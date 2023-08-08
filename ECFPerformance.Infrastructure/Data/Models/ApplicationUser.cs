@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ECFPerformance.Infrastructure.Data.Models
 {
-    internal class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<Guid>
     {
         public ApplicationUser()
         {

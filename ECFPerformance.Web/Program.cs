@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ECFPerformance.Infrastructure.Data;
+using ECFPerformance.Infrastructure.Data.Models;
 
 namespace ECFPerformance.Infrastructure.Data.Migrations
 {
@@ -11,13 +12,26 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration
+                .GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
             builder.Services.AddDbContext<EcfDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 3;
+            })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<EcfDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
