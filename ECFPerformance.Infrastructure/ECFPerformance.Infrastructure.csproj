@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="Data\Models\Chassis\" />
+    <Folder Include="Data\Models\Suspension\" />
     <Folder Include="Data\Seed\" />
   </ItemGroup>
 
