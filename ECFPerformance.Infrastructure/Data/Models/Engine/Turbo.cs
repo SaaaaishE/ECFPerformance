@@ -27,6 +27,9 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         public decimal Price { get; set; }
         public int Quantity { get; set; }
 
+        [Required]
+        public string MainImage { get; set; } = null!;
+
         [ForeignKey(nameof(ScrollType))]
         public int ScrollTypeId { get; set; }
         public TurboScrollType ScrollType { get; set; } = null!;

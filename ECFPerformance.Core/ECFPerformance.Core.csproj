@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ECFPerformance.Constants\ECFPerformance.Constants.csproj" />
+    <ProjectReference Include="..\ECFPerformance.Infrastructure\ECFPerformance.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

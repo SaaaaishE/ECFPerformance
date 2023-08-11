@@ -34,6 +34,9 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
 
         public int Quantity { get; set; }
 
+        [Required]
+        public string MainImage { get; set; } = null!;
+
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;

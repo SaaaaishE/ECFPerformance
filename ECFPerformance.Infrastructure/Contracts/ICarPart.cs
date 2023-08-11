@@ -14,6 +14,7 @@ namespace ECFPerformance.Infrastructure.Contracts
         public string Make { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+        public string MainImage { get; set; }
         public Category Category { get; set; }
     }
 }

@@ -26,6 +26,9 @@ namespace ECFPerformance.Infrastructure.Data.Models.Projects
         [Required]
         public string Description { get; set; } = null!;
 
+        [Required]
+        public string MainImage { get; set; } = null!;
+
         public ICollection<Turbo> Turbos { get; set; }
 
         public ICollection<ConnectingRod> ConnectingRods { get; set;}

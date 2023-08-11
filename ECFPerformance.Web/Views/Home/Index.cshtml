@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ECFPerformance.Core.ViewModels
+@model IEnumerable<AllProjectCarsViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,8 +10,21 @@
 
 <div class="text-center">
     <h1 class="display-4">OUR PROJECTS</h1>
-    @foreach(var proj in Model)
-    {
-        
-    }
 </div>
+
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        @foreach (var post in Model)
+        {
+            <div class="col-sm-6">
+                <div class="card ">
+                    <div class="card-body">
+                        <img src=@post.MainImage />
+                        <h4 class="card-title text-center">@post.Name</h4>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
