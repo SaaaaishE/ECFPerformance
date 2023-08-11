@@ -2,7 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+<video autoplay muted loop id="homepageDrift">
+    <source src="~/videos/homepgDrift.mp4" type="video/mp4">
+</video>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">OUR PROJECTS</h1>
+    @foreach(var proj in Model)
+    {
+        
+    }
 </div>

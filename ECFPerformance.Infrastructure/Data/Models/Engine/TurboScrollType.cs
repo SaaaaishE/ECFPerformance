@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECFPerformance.Infrastructure.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace ECFPerformance.Infrastructure.Data.Models.Engine
 {
-    public class EngineCategory : BaseCategory
+    public class TurboScrollType
     {
-        public EngineCategory()
+        public TurboScrollType()
         {
             Turbos = new HashSet<Turbo>();
-            ConnectingRods = new HashSet<ConnectingRod>();
         }
 
-        public ICollection<Turbo> Turbos { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public ICollection<ConnectingRod> ConnectingRods { get; set; }
+        public ScrollType ScrollType { get; set; }
+
+        public ICollection<Turbo> Turbos { get; set; }
     }
 }
