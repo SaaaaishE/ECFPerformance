@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ECFPerformance.Constants\ECFPerformance.Constants.csproj" />
     <ProjectReference Include="..\ECFPerformance.Infrastructure\ECFPerformance.Infrastructure.csproj" />
   </ItemGroup>

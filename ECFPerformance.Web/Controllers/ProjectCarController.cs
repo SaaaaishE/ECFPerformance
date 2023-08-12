@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECFPerformance.Core.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECFPerformance.Web.Controllers
 {
@@ -6,7 +7,15 @@ namespace ECFPerformance.Web.Controllers
     {
         public async Task<IActionResult> ShowProjectCar(int id)
         {
-            return View();
+            ProjectCarViewModel projectCarViewModel = new ProjectCarViewModel()
+            {
+                Id = id,
+                Description = "Na valkata kolata",
+                Name = "Valkata",
+                MainImage = "/imgs/valkata.jpg"
+            };
+
+            return View(projectCarViewModel);
         }
     }
 }

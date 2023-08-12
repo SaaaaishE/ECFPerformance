@@ -17,14 +17,16 @@
     <div class="row">
         @foreach (var post in Model)
         {
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="card ">
                     <div class="card-body">
-                        <img src=@post.MainImage />
-                        <h4 class="card-title text-center">@post.Name</h4>
+                        <img src=@post.MainImage class="col-sm-12" />
+                        <a asp-controller="ProjectCar" asp-action="ShowProjectCar" asp-route-id="@post.Id" class="card-title text-center">@post.Name</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 }
+ <br />
+<a class="btn btn-primary btn-lg" asp-controller="Engine" asp-action="Index">PRODUCTS</a>

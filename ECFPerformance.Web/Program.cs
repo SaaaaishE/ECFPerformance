@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models;
+using ECFPerformance.Core.Services.Contracts;
+using ECFPerformance.Core.Services;
 
 namespace ECFPerformance.Infrastructure.Data.Migrations
 {
@@ -31,6 +33,8 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
             })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<EcfDbContext>();
+
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             builder.Services.AddControllersWithViews();
 

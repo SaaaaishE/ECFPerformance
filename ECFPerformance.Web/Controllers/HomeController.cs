@@ -24,25 +24,25 @@ namespace ECFPerformance.Web.Controllers
                 },
                 new AllProjectCarsViewModel()
                 {
-                    Id = 1,
+                    Id = 2,
                     Name = "Valkata",
                     MainImage = "https://th.bing.com/th/id/OIP.WXZ44MYGOyypnUxAONa9GAHaE8?w=274&h=183&c=7&r=0&o=5&pid=1.7"
                 },
                 new AllProjectCarsViewModel()
                 {
-                    Id = 1,
+                    Id = 3,
                     Name = "Valkata",
                     MainImage = "https://th.bing.com/th/id/OIP.WXZ44MYGOyypnUxAONa9GAHaE8?w=274&h=183&c=7&r=0&o=5&pid=1.7"
                 },
                 new AllProjectCarsViewModel()
                 {
-                    Id = 1,
+                    Id = 4,
                     Name = "Valkata",
                     MainImage = "https://th.bing.com/th/id/OIP.WXZ44MYGOyypnUxAONa9GAHaE8?w=274&h=183&c=7&r=0&o=5&pid=1.7"
                 },
                 new AllProjectCarsViewModel()
                 {
-                    Id = 1,
+                    Id = 5,
                     Name = "Valkata",
                     MainImage = "https://th.bing.com/th/id/OIP.WXZ44MYGOyypnUxAONa9GAHaE8?w=274&h=183&c=7&r=0&o=5&pid=1.7"
                 }

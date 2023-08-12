@@ -1,0 +1,15 @@
+﻿@using ECFPerformance.Core.ViewModels
+@model IEnumerable<CategoryNamesViewModel>
+
+<div class="text-center">
+    <h1 class="display-4">CATEGORIES</h1>
+</div>
+
+<div class="row">
+    @foreach(var category in Model)
+    {
+        <div class="col-md-3">
+            <a href="#">@category.Name</a>
+        </div>
+    }
+</div>
