@@ -35,6 +35,7 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
                 .AddEntityFrameworkStores<EcfDbContext>();
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ITurboService, TurboService>();
 
             builder.Services.AddControllersWithViews();
 

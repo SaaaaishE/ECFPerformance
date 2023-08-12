@@ -1,0 +1,36 @@
+﻿@using ECFPerformance.Core.ViewModels
+@model IEnumerable<AllTurbosViewModel>
+
+<partial name="_CategoriesPartial" />
+
+<div class="row" id="categories">
+    <div class="col-md-4">
+        <a asp-controller="Engine" asp-action="Turbos">Turbos</a>
+    </div>
+    <div class="col-md-4">
+        <a asp-controller="Engine" asp-action="ConnectingRods">Connecting Rods</a>
+    </div>
+</div>
+
+<h1>TURBOS</h1>
+
+<br />
+
+<div class="row">
+    @foreach(var turbo in Model)
+    {
+        <div class="col-md-3">
+            <img class="col-md-6" src=@turbo.MainImage />
+            <br />
+            <a href="#">@turbo.Name</a>
+            <p>Scroll Type: @turbo.ScrollType.ScrollType</p>
+            @if(turbo.Quantity > 0)
+            {
+                <p>Available</p>
+            } else
+            {
+                <p>Out of stock</p>
+            }
+        </div>
+    }
+</div>
