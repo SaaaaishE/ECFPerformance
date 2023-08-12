@@ -1,0 +1,17 @@
+﻿@model TurboViewModel
+
+<div class="row">
+    <div class="col-lg-6">
+        <img class="col-md-6" src=@Model.MainImage />
+    </div>
+    <div class="col-lg-6">
+        <h4>Description</h4>
+        <p>@Model.Name</p>
+        <p>@Model.Make</p>
+        <p>@Model.ScrollType.ScrollType</p>
+        <p>@Model.Quantity left</p>
+        <p>$ @Model.Price</p>
+    </div>
+</div>
+
+<a href="#" class="btn btn-primary btn-lg">ADD TO CART</a>

@@ -1,12 +1,14 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
+using ECFPerformance.Infrastructure.Data.Models.Engine;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ECFPerformance.Core.Services
 {
@@ -33,6 +35,26 @@ namespace ECFPerformance.Core.Services
                     ScrollType = t.ScrollType,
                 })
                 .ToArrayAsync();
+        }
+
+        public async Task<TurboViewModel> GetTurboByIdAsync(int turboId)
+        {
+            var turbo = await dbContext.Turbos
+                .Include(t => t.ScrollType)
+                .FirstAsync(x => x.Id == turboId);
+
+            TurboViewModel turboViewModel = new TurboViewModel()
+            {
+                Id = turbo.Id,
+                Name = turbo.Name,
+                Make = turbo.Make,
+                Price = turbo.Price,
+                Quantity = turbo.Quantity,
+                ScrollType = turbo.ScrollType,
+                MainImage = turbo.MainImage
+            };
+
+            return turboViewModel;
         }
     }
 }

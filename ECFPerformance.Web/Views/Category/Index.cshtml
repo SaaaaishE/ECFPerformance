@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AllProductsViewModel>
+
+<partial name="_CategoriesPartial" />
+
+<br />
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <div class="col-md-3">
+            <img class="col-md-6" src=@item.MainImage />
+            <p>@item.CategoryName</p>
+        </div>
+    }
+</div>

@@ -10,5 +10,7 @@ namespace ECFPerformance.Core.Services.Contracts
     public interface ICategoryService
     {
         public Task<IEnumerable<CategoryNamesViewModel>> GetCategoriesNamesAsync();
+
+        public Task<IEnumerable<AllProductsViewModel>> GetAllProductsAsync();
     }
 }

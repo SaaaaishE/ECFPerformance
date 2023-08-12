@@ -1,5 +1,4 @@
 ﻿using ECFPerformance.Core.ViewModels;
-using ECFPerformance.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

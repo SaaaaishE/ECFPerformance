@@ -19,6 +19,36 @@ namespace ECFPerformance.Core.Services
             this.dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<AllProductsViewModel>> GetAllProductsAsync()
+        {
+            var turbos = await dbContext.Turbos
+               //.Include(c => c.Category)
+               .Select(t => new AllProductsViewModel
+               {
+                   Id = t.Id,
+                   Name = t.Name,
+                   MainImage = t.MainImage,
+                   CategoryName = t.Category.CategoryName
+               })
+               .ToArrayAsync();
+
+            var rods = await dbContext.ConnectingRods
+                .Select(r => new AllProductsViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    MainImage = r.MainImage,
+                    CategoryName = r.Category.CategoryName
+                })
+                .ToArrayAsync();
+
+            List<AllProductsViewModel> products = new List<AllProductsViewModel>();
+            products.AddRange(turbos);
+            products.AddRange(rods);
+
+            return products;
+        }
+
         public async Task<IEnumerable<CategoryNamesViewModel>> GetCategoriesNamesAsync()
         {
             return await dbContext.Categories

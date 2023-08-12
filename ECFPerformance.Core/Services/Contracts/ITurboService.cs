@@ -10,5 +10,6 @@ namespace ECFPerformance.Core.Services.Contracts
     public interface ITurboService
     {
         public Task<IEnumerable<AllTurbosViewModel>> GetAllTurbosAsync();
+        public Task<TurboViewModel> GetTurboByIdAsync(int turboId);
     }
 }

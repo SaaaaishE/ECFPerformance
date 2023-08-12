@@ -1,14 +1,13 @@
-﻿@using ECFPerformance.Core.ViewModels
-@model IEnumerable<AllTurbosViewModel>
+﻿@model IEnumerable<AllTurbosViewModel>
 
 <partial name="_CategoriesPartial" />
 
 <div class="row" id="categories">
     <div class="col-md-4">
-        <a asp-controller="Engine" asp-action="Turbos">Turbos</a>
+        <a asp-controller="Turbo" asp-action="Turbos">Turbos</a>
     </div>
     <div class="col-md-4">
-        <a asp-controller="Engine" asp-action="ConnectingRods">Connecting Rods</a>
+        <a asp-controller="ConnectingRod" asp-action="ConnectingRods">Connecting Rods</a>
     </div>
 </div>
 
@@ -22,7 +21,7 @@
         <div class="col-md-3">
             <img class="col-md-6" src=@turbo.MainImage />
             <br />
-            <a href="#">@turbo.Name</a>
+            <a asp-controller="Turbo" asp-action="Details" asp-route-id="@turbo.Id">@turbo.Name</a>
             <p>Scroll Type: @turbo.ScrollType.ScrollType</p>
             @if(turbo.Quantity > 0)
             {

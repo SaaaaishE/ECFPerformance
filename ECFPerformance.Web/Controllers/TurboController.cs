@@ -25,5 +25,12 @@ namespace ECFPerformance.Web.Controllers
 
             return View(turbos);
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            TurboViewModel vm = await turboService.GetTurboByIdAsync(id);
+
+            return View(vm);
+        }
     }
 }
