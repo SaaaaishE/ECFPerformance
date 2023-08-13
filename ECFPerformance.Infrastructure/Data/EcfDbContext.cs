@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data.Models.Projects;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ECFPerformance.Infrastructure.Data.Seed;
 
 namespace ECFPerformance.Infrastructure.Data
 {
@@ -22,6 +23,31 @@ namespace ECFPerformance.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ConnectingRodEngineType>()
+                .HasKey(x => new { x.CompatibleEngineId, x.CompatibleRodId });
+
+
+            builder.Entity<EngineType>()
+                .HasData(Seeder.SeedEngineTypes());
+
+            builder.Entity<TurboScrollType>()
+                .HasData(Seeder.SeedTurboScrollTypes());
+
+            builder.Entity<ConnectingRodBeamType>()
+                .HasData(Seeder.SeedBeamTypes());
+
+            builder.Entity<Category>()
+                .HasData(Seeder.SeedCategories());
+
+            builder.Entity<Turbo>()
+                .HasData(Seeder.SeedTurbos());
+
+            builder.Entity<ConnectingRod>()
+                .HasData(Seeder.SeedConnectingRods());
+
+            builder.Entity<ConnectingRodEngineType>()
+                .HasData(Seeder.SeedRodsEngines());
+
             base.OnModelCreating(builder);
         }
     }

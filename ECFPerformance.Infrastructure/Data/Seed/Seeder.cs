@@ -17,6 +17,7 @@ namespace ECFPerformance.Infrastructure.Data.Seed
         private static Category[] categories;
         private static Turbo[] turbos;
         private static ConnectingRod[] connectingRods;
+        private static ConnectingRodEngineType[] connectingRodEngineTypes;
 
         public static EngineType[] SeedEngineTypes()
         {
@@ -181,11 +182,6 @@ namespace ECFPerformance.Infrastructure.Data.Seed
                 Id = 1,
                 CategoryId = 1,
                 BeamTypeId = 1,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
                 Name = "BMW Beam Type I Connecting Rod 135mm",
                 Make = "Eagle",
                 Quantity = 3,
@@ -199,93 +195,141 @@ namespace ECFPerformance.Infrastructure.Data.Seed
                 Id = 2,
                 CategoryId = 1,
                 BeamTypeId = 2,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
                 Name = "BMW Beam Type H Connecting Rod 135mm",
                 Make = "MaxPeedingRods",
                 Quantity = 3,
                 Length = 135,
-                MainImage = "",
+                MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-6/default/main/forged-rods-cr-6(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp",
                 Price = 580m,
+                PistonBoltDiameter = 22
+            };
+            connectingRods[2] = new ConnectingRod()
+            {
+                Id = 3,
+                CategoryId = 1,
+                BeamTypeId = 2,
+                Name = "Mazda H Beam ",
+                Make = "MaxPeedingRods",
+                Quantity = 3,
+                Length = 133,
+                MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000",
+                Price = 357m,
+                PistonBoltDiameter = 20
+            };
+            connectingRods[3] = new ConnectingRod()
+            {
+                Id = 4,
+                CategoryId = 1,
+                BeamTypeId = 1,
+                Name = "Mazda I Beam",
+                Make = "Eagle",
+                Quantity = 3,
+                Length = 133,
+                MainImage = "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/84c3ce8a-bfd5-11ea-87b6-e6954ea1f6b1.jpg",
+                Price = 460m,
+                PistonBoltDiameter = 20
+            };
+            connectingRods[4] = new ConnectingRod()
+            {
+                Id = 5,
+                CategoryId = 1,
+                BeamTypeId = 2,
+                Name = "Honda H Beam",
+                Make = "MaxPeedingRods",
+                Quantity = 3,
+                Length = 137,
+                MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp",
+                Price = 359m,
                 PistonBoltDiameter = 19
             };
-            connectingRods[0] = new ConnectingRod()
+            connectingRods[5] = new ConnectingRod()
             {
-                Id = 1,
+                Id = 6,
                 CategoryId = 1,
                 BeamTypeId = 1,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
-                Name = "",
-                Make = "",
+                Name = "Honda I Beam",
+                Make = "Eagle",
                 Quantity = 3,
-                Length = 0,
-                MainImage = "",
-                Price = 0m,
-                PistonBoltDiameter = 0
-            };
-            connectingRods[0] = new ConnectingRod()
-            {
-                Id = 1,
-                CategoryId = 1,
-                BeamTypeId = 1,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
-                Name = "",
-                Make = "",
-                Quantity = 3,
-                Length = 0,
-                MainImage = "",
-                Price = 0m,
-                PistonBoltDiameter = 0
-            };
-            connectingRods[0] = new ConnectingRod()
-            {
-                Id = 1,
-                CategoryId = 1,
-                BeamTypeId = 1,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
-                Name = "",
-                Make = "",
-                Quantity = 3,
-                Length = 0,
-                MainImage = "",
-                Price = 0m,
-                PistonBoltDiameter = 0
-            };
-            connectingRods[0] = new ConnectingRod()
-            {
-                Id = 1,
-                CategoryId = 1,
-                BeamTypeId = 1,
-                CompatibleEngines = new EngineType[]
-                {
-                    engineTypes[0],
-                    engineTypes[1],
-                },
-                Name = "",
-                Make = "",
-                Quantity = 3,
-                Length = 0,
-                MainImage = "",
-                Price = 0m,
-                PistonBoltDiameter = 0
+                Length = 137,
+                MainImage = "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/870fa77e-bfd3-11ea-b02b-15c463fe2bce.jpg",
+                Price = 465m,
+                PistonBoltDiameter = 19
             };
 
             return connectingRods;
+        }
+
+        public static ConnectingRodEngineType[] SeedRodsEngines()
+        {
+            connectingRodEngineTypes = new ConnectingRodEngineType[12];
+
+            //bmw rods
+            connectingRodEngineTypes[0] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 1,
+                CompatibleRodId = 1,
+            };
+            connectingRodEngineTypes[1] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 1,
+                CompatibleRodId = 2,
+            };
+            connectingRodEngineTypes[2] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 2,
+                CompatibleRodId = 1,
+            };
+            connectingRodEngineTypes[3] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 2,
+                CompatibleRodId = 2,
+            };
+
+            //mazda rods
+            connectingRodEngineTypes[4] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 5,
+                CompatibleRodId = 3,
+            };
+            connectingRodEngineTypes[5] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 5,
+                CompatibleRodId = 4,
+            };
+            connectingRodEngineTypes[6] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 6,
+                CompatibleRodId = 3,
+            };
+            connectingRodEngineTypes[7] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 6,
+                CompatibleRodId = 4,
+            };
+
+            //honda rods
+            connectingRodEngineTypes[8] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 3,
+                CompatibleRodId = 5,
+            };
+            connectingRodEngineTypes[9] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 3,
+                CompatibleRodId = 6,
+            };
+            connectingRodEngineTypes[10] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 4,
+                CompatibleRodId = 5,
+            };
+            connectingRodEngineTypes[11] = new ConnectingRodEngineType()
+            {
+                CompatibleEngineId = 4,
+                CompatibleRodId = 6,
+            };
+
+            return connectingRodEngineTypes;
         }
     }
 }
