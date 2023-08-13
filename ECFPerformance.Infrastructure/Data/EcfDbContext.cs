@@ -24,6 +24,9 @@ namespace ECFPerformance.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ApplicationUser>()
+                .HasData(Seeder.SeedAdmin());
+
             builder.Entity<ConnectingRodEngineType>()
                 .HasKey(x => new { x.CompatibleEngineId, x.CompatibleRodId });
 

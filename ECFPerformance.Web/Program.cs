@@ -4,6 +4,8 @@ using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models;
 using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.Services;
+using ECFPerformance.Web.Extensions;
+using static ECFPerformance.Constants.GeneralApplicationConstants;
 
 namespace ECFPerformance.Infrastructure.Data.Migrations
 {
@@ -60,6 +62,8 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator(DevelopmentAdminEmail);
 
             app.MapControllerRoute(
                 name: "default",

@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    partial class EcfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230813232736_seedAdmin")]
+    partial class seedAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,9 +119,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f8f5df86-1735-46e3-a3bb-dd5b56855c76"),
+                            Id = new Guid("78d935fc-e47c-492d-b273-928ea9da229e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b630566-395c-42fc-8884-a0b790ab0f07",
+                            ConcurrencyStamp = "a9bfd4a4-7f4c-4c4a-b51c-ac182a38f15d",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -127,10 +129,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFENtP89EBdhYDobCLPVxk5oUciRgd9i/iJ26MtrvyFCOBNjh8KbtdaUGujyIW5iaA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKIj/NqlB1oN9R0n9NuexliY+01e0o17deGRRlhh3Js99NF2vbJzrLR+dg7OHuWrJw==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d365c6e4-1f43-4734-946c-d74ebf42b483",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });

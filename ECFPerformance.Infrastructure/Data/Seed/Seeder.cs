@@ -6,11 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using static ECFPerformance.Constants.GeneralApplicationConstants;
 
 namespace ECFPerformance.Infrastructure.Data.Seed
 {
     public static class Seeder
     {
+        private static ApplicationUser[] admin;
         private static EngineType[] engineTypes;
         private static TurboScrollType[] turboScrollTypes;
         private static ConnectingRodBeamType[] connectingRodBeamTypes;
@@ -18,6 +23,28 @@ namespace ECFPerformance.Infrastructure.Data.Seed
         private static Turbo[] turbos;
         private static ConnectingRod[] connectingRods;
         private static ConnectingRodEngineType[] connectingRodEngineTypes;
+
+        public static ApplicationUser[] SeedAdmin()
+        {
+            var hasher = new PasswordHasher<ApplicationUser>();
+
+            admin = new ApplicationUser[1];
+            admin[0] = new ApplicationUser()
+            {
+                FirstName = "Alex",
+                LastName = "Gavrilov",
+                PhoneNumber = "+3594567891",
+                Email = DevelopmentAdminEmail,
+                NormalizedEmail = DevelopmentAdminEmail,
+                UserName = DevelopmentAdminEmail,
+                NormalizedUserName = DevelopmentAdminEmail,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+
+            admin[0].PasswordHash = hasher.HashPassword(admin[0], "123456");
+            
+            return admin;
+        }
 
         public static EngineType[] SeedEngineTypes()
         {
