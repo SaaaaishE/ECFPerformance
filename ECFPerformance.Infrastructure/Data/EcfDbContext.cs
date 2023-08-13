@@ -20,6 +20,7 @@ namespace ECFPerformance.Infrastructure.Data
         public DbSet<ConnectingRod> ConnectingRods { get; set; }
         public DbSet<ProjectCar> ProjectCars { get; set; }
         public DbSet<Turbo> Turbos { get; set; }
+        public DbSet<TurboScrollType> ScrollTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

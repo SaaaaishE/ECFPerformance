@@ -1,4 +1,5 @@
-﻿using ECFPerformance.Core.Services.Contracts;
+﻿using ECFPerformance.Core.FormModels.Turbo;
+using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models.Engine;
@@ -19,6 +20,30 @@ namespace ECFPerformance.Core.Services
         public TurboService(EcfDbContext dbContext)
         {
             this.dbContext = dbContext;    
+        }
+
+        public async Task EditTurboAsync(int turboId, TurboFormModel model)
+        {
+            Turbo currentTurbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);
+            currentTurbo.Name = model.Name;
+            currentTurbo.Price = model.Price;
+            currentTurbo.Quantity = model.Quantity;
+            currentTurbo.Make = model.Make;
+            currentTurbo.MainImage = model.MainImage;
+            currentTurbo.ScrollTypeId = model.ScrollTypeId;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ScrollTypeViewModel>> GetAllScrollTypesAsync()
+        {
+            return await dbContext.ScrollTypes
+                .Select(x => new ScrollTypeViewModel()
+                {
+                    Id = x.Id,
+                    ScrollType = x.ScrollType,
+                })
+                .ToArrayAsync();
         }
 
         public async Task<IEnumerable<AllTurbosViewModel>> GetAllTurbosAsync()
@@ -55,6 +80,26 @@ namespace ECFPerformance.Core.Services
             };
 
             return turboViewModel;
+        }
+
+        public async Task<TurboFormModel> GetTurboFormByIdAsync(int turboId)
+        {
+            Turbo currentTurbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);
+
+            IEnumerable<ScrollTypeViewModel> scrollTypes = await this.GetAllScrollTypesAsync();
+
+            TurboFormModel model = new TurboFormModel()
+            {
+                MainImage = currentTurbo.MainImage,
+                Make = currentTurbo.Make,
+                Price = currentTurbo.Price,
+                Quantity = currentTurbo.Quantity,
+                Name = currentTurbo.Name,
+                ScrollTypeId = currentTurbo.ScrollTypeId,
+                ScrollTypes = scrollTypes
+            };
+
+            return model;
         }
     }
 }

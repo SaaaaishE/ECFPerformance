@@ -1,4 +1,5 @@
-﻿using ECFPerformance.Core.ViewModels;
+﻿using ECFPerformance.Core.FormModels.Turbo;
+using ECFPerformance.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,8 @@ namespace ECFPerformance.Core.Services.Contracts
     {
         public Task<IEnumerable<AllTurbosViewModel>> GetAllTurbosAsync();
         public Task<TurboViewModel> GetTurboByIdAsync(int turboId);
+        public Task<IEnumerable<ScrollTypeViewModel>> GetAllScrollTypesAsync();
+        public Task<TurboFormModel> GetTurboFormByIdAsync(int turboId);
+        public Task EditTurboAsync(int turboId, TurboFormModel model);
     }
 }
