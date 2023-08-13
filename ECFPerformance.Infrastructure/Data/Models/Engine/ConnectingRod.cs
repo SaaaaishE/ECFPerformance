@@ -47,8 +47,10 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
 
         public int PistonBoltDiameter { get; set; }
 
+        [ForeignKey(nameof(BeamType))]
+        public int BeamTypeId { get; set; }
         [Required]
-        public ConnectingRodBeamEnum BeamType { get; set; }
+        public ConnectingRodBeamType BeamType { get; set; } = null!;
 
         public ICollection<EngineType> CompatibleEngines { get; set; }
     }

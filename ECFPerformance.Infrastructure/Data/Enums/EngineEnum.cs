@@ -9,6 +9,10 @@ namespace ECFPerformance.Infrastructure.Data.Enums
     public enum EngineEnum
     {
         M52B28,
-        M54B30
+        M54B30,
+        BP6,
+        BP8,
+        D16,
+        D15
     }
 }
