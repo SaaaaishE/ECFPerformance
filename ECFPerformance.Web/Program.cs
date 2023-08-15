@@ -6,6 +6,7 @@ using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.Services;
 using ECFPerformance.Web.Extensions;
 using static ECFPerformance.Constants.GeneralApplicationConstants;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ECFPerformance.Infrastructure.Data.Migrations
 {
@@ -40,6 +41,19 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
             builder.Services.AddScoped<ITurboService, TurboService>();
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = x =>
+                    {
+                        x.Response.Redirect("../User/Login");
+                        return Task.CompletedTask;
+                    }
+                };
+
+            });
 
             var app = builder.Build();
 

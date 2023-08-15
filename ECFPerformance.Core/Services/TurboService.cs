@@ -22,6 +22,26 @@ namespace ECFPerformance.Core.Services
             this.dbContext = dbContext;    
         }
 
+        public async Task<int> AddTurboAsync(TurboFormModel model)
+        {
+            Turbo turbo = new Turbo()
+            {
+                CategoryId = 1,
+                ScrollTypeId = model.ScrollTypeId,
+                MainImage = model.MainImage,
+                Price = model.Price,
+                Make = model.Make,
+                Quantity = model.Quantity,
+                Name = model.Name,
+            };
+
+            await dbContext.Turbos.AddAsync(turbo);
+
+            await dbContext.SaveChangesAsync();
+
+            return turbo.Id;
+        }
+
         public async Task EditTurboAsync(int turboId, TurboFormModel model)
         {
             Turbo currentTurbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);

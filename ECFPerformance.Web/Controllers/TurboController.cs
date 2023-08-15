@@ -2,7 +2,9 @@
 using ECFPerformance.Core.Services;
 using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static ECFPerformance.Constants.GeneralApplicationConstants;
 
 namespace ECFPerformance.Web.Controllers
 {
@@ -35,6 +37,7 @@ namespace ECFPerformance.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Edit(int id)
         {
             TurboFormModel formModel = await turboService.GetTurboFormByIdAsync(id);
@@ -43,9 +46,29 @@ namespace ECFPerformance.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Edit(int id, TurboFormModel formModel)
         {
             await turboService.EditTurboAsync(id, formModel);
+
+            return RedirectToAction("Details", new { id });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = AdminRoleName)]
+        public async Task<IActionResult> Add()
+        {
+            TurboFormModel formModel = new TurboFormModel();
+            formModel.ScrollTypes = await turboService.GetAllScrollTypesAsync();
+
+            return View(formModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = AdminRoleName)]
+        public async Task<IActionResult> Add(TurboFormModel formModel)
+        {
+            int id = await turboService.AddTurboAsync(formModel);
 
             return RedirectToAction("Details", new { id });
         }

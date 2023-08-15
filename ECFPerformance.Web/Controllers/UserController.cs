@@ -52,6 +52,7 @@ namespace ECFPerformance.Web.Controllers
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
             };
 
             await userManager.SetEmailAsync(user, model.Email);

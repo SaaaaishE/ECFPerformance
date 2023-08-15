@@ -15,5 +15,6 @@ namespace ECFPerformance.Core.Services.Contracts
         public Task<IEnumerable<ScrollTypeViewModel>> GetAllScrollTypesAsync();
         public Task<TurboFormModel> GetTurboFormByIdAsync(int turboId);
         public Task EditTurboAsync(int turboId, TurboFormModel model);
+        public Task<int> AddTurboAsync(TurboFormModel model);
     }
 }
