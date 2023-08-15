@@ -16,7 +16,11 @@
 
 <br />
 
-<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+@if (User.IsInRole(AdminRoleName))
+{
+    <a class="btn btn-primary btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+}
+
 <br />
 
 <a href="#" class="btn btn-primary btn-lg">ADD TO CART</a>

@@ -36,23 +36,7 @@ namespace ECFPerformance.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpGet]
-        [Authorize(Roles = AdminRoleName)]
-        public async Task<IActionResult> Edit(int id)
-        {
-            TurboFormModel formModel = await turboService.GetTurboFormByIdAsync(id);
-
-            return View(formModel);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = AdminRoleName)]
-        public async Task<IActionResult> Edit(int id, TurboFormModel formModel)
-        {
-            await turboService.EditTurboAsync(id, formModel);
-
-            return RedirectToAction("Details", new { id });
-        }
+        
 
         
     }

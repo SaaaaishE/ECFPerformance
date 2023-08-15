@@ -18,7 +18,6 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Add()
         {
             TurboFormModel formModel = new TurboFormModel();
@@ -28,10 +27,25 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = AdminRoleName)]
         public async Task<IActionResult> Add(TurboFormModel formModel)
         {
             int id = await turboService.AddTurboAsync(formModel);
+
+            return RedirectToAction("Details", "Turbo", new { area = "", id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            TurboFormModel formModel = await turboService.GetTurboFormByIdAsync(id);
+
+            return View(formModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TurboFormModel formModel)
+        {
+            await turboService.EditTurboAsync(id, formModel);
 
             return RedirectToAction("Details", "Turbo", new { area = "", id });
         }
