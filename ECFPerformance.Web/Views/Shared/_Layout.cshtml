@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using static ECFPerformance.Constants.GeneralApplicationConstants
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Products</a>
                         </li>
+                        @if (User.IsInRole(AdminRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="@AdminAreaName" asp-controller="Home" asp-action="Index">Admin</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

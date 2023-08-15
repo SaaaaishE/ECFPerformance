@@ -54,23 +54,6 @@ namespace ECFPerformance.Web.Controllers
             return RedirectToAction("Details", new { id });
         }
 
-        [HttpGet]
-        [Authorize(Roles = AdminRoleName)]
-        public async Task<IActionResult> Add()
-        {
-            TurboFormModel formModel = new TurboFormModel();
-            formModel.ScrollTypes = await turboService.GetAllScrollTypesAsync();
-
-            return View(formModel);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = AdminRoleName)]
-        public async Task<IActionResult> Add(TurboFormModel formModel)
-        {
-            int id = await turboService.AddTurboAsync(formModel);
-
-            return RedirectToAction("Details", new { id });
-        }
+        
     }
 }
