@@ -24,6 +24,7 @@ namespace ECFPerformance.Core.Services
             return await dbContext.Users
                 .Select(u => new AllUsersViewModel
                 {
+                    Email = u.Email,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     PhoneNumber = u.PhoneNumber,

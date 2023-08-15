@@ -1,4 +1,5 @@
 ﻿@using static ECFPerformance.Constants.GeneralApplicationConstants
+@model IEnumerable<AllUsersViewModel>
 @{
     ViewData["Title"] = "Admin Home Page";
 }
@@ -19,4 +20,10 @@
     <a asp-area="" asp-controller="Turbo" asp-action="Turbos"
        class="btn btn-primary btn-lg">Edit Turbo</a>
     <span>  |   </span>
+    <button type="button" class="btn btn-primary btn-lg" id="editTurboBtn">All Users</button>
 </div>
+
+<div id="usersTable">
+</div>
+
+<script src="~/js/site.js"></script>
