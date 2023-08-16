@@ -21,6 +21,8 @@ namespace ECFPerformance.Infrastructure.Data
         public DbSet<ProjectCar> ProjectCars { get; set; }
         public DbSet<Turbo> Turbos { get; set; }
         public DbSet<TurboScrollType> ScrollTypes { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<TurboShoppingCart> TurbosShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +31,9 @@ namespace ECFPerformance.Infrastructure.Data
 
             builder.Entity<ConnectingRodEngineType>()
                 .HasKey(x => new { x.CompatibleEngineId, x.CompatibleRodId });
+
+            builder.Entity<TurboShoppingCart>()
+                .HasKey(x => new {x.ShoppingCartId, x.TurboId});
 
 
             builder.Entity<EngineType>()

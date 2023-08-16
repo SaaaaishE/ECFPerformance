@@ -15,6 +15,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         public Turbo()
         {
             ProjectCars = new HashSet<ProjectCar>();
+            ShoppingCarts = new HashSet<ShoppingCart>();
         }
 
         public int Id { get; set; }
@@ -39,5 +40,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         public Category Category { get; set; } = null!;
 
         public ICollection<ProjectCar> ProjectCars { get; set; }
+
+        public ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

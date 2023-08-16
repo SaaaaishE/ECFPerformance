@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    partial class EcfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816093312_shoppingCartTurbo")]
+    partial class shoppingCartTurbo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,9 +119,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("685b497f-2221-43bc-b994-d2597d08fec0"),
+                            Id = new Guid("7463b1a4-635d-462c-879e-e2f4eaa74824"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "41622b62-f025-4833-a3f0-41a6358c54db",
+                            ConcurrencyStamp = "8ef63267-541f-4ea2-8885-0df0844a4425",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -127,10 +129,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGjrsgUKyInA5/xTS690ne/XuX4konB2+eRtWMoHov0qz7fraU9LHM7CNTbnE3/ddQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBQC4lYvk4le98qQml22/r6b5e3zE4b3Ig1XfTz+lS0PUdCkBIm0GPYJ77Av+fXOwg==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05af2d01-d258-4f2a-9e18-21bc08b5508f",
+                            SecurityStamp = "0f42cdc1-3334-41ca-b9b0-98edf2ec0bbc",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -582,7 +584,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.HasIndex("TurboId");
 
-                    b.ToTable("TurbosShoppingCarts");
+                    b.ToTable("TurboShoppingCart");
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Projects.ProjectCar", b =>
