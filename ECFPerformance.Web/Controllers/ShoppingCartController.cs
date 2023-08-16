@@ -27,7 +27,6 @@ namespace ECFPerformance.Web.Controllers
             return View(viewModel);
         }
 
-        //[Route("[action]")]
         [HttpPost]
         public async Task<JsonResult> AddTurboToCart(int id)
         {
@@ -38,6 +37,16 @@ namespace ECFPerformance.Web.Controllers
             await cartService.AddTurboToCartAsync(userId, id);
 
             return new JsonResult(201);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveTurboFromCart(int id)
+        {
+            Guid userId = Guid.Parse(User.GetId());
+
+            await cartService.RemoveTurboFromCartAsync(userId, id);
+
+            return RedirectToAction("Index");
         }
     }
 }

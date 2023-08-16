@@ -67,11 +67,25 @@ namespace ECFPerformance.Core.Services
                                         Id = x.Id,
                                         Name = x.Name,
                                         Price = x.Price,
-                                        Quantity = x.Quantity,
                                     })
             };
 
             return model;
+        }
+
+        public async Task RemoveTurboFromCartAsync(Guid userId, int turboId)
+        {
+            ShoppingCart cart = await dbContext.ShoppingCarts
+                .Include (t => t.Turbos)
+                .FirstAsync(x => x.UserId == userId);
+            Turbo? turbo = cart.Turbos.FirstOrDefault(t => t.Id == turboId);
+
+            if(turbo != null)
+            {
+                cart.Turbos.Remove(turbo);
+
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }

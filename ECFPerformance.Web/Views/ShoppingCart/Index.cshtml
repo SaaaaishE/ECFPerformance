@@ -2,17 +2,22 @@
 
 <h1>My Cart</h1>
 
-@if(Model.TurbosInCart != null)
+@if (Model.TurbosInCart != null)
 {
     <h3>Turbos: </h3>
     <table>
         <tbody>
-            @foreach(TurboInCartViewModel turbo in Model.TurbosInCart)
+            @foreach (TurboInCartViewModel turbo in Model.TurbosInCart)
             {
                 <tr>
+                    <td>
+                        <p style="visibility: hidden" id="turboId">@turbo.Id</p>
+                    </td>
                     <td>@turbo.Name</td>
-                    <td>@turbo.Price</td>
-                    <td>@turbo.Quantity</td>
+                    <td>$ @turbo.Price</td>
+                    <td>
+                        <a asp-area="" asp-controller="ShoppingCart" asp-action="RemoveTurboFromCart" asp-route-id="@turbo.Id" class="btn btn-danger">Remove From Cart</a>
+                    </td>
                 </tr>
             }
         </tbody>

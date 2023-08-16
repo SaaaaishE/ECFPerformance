@@ -1,10 +1,9 @@
-﻿let addToCartBtn = document.getElementById("addToCartButton");
+﻿//add turbo to cart
+let addToCartBtn = document.getElementById("addToCartButton");
 addToCartBtn.addEventListener('click', addToCart);
 
 async function addToCart() {
     let turboId = document.getElementById("turboId").textContent;
-
-    //let body = { 'id': turboId };
 
     await post(`/ShoppingCart/AddTurboToCart/${turboId}`);
 }
