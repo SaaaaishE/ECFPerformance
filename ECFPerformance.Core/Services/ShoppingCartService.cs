@@ -1,5 +1,6 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
+using ECFPerformance.Core.ViewModels.Turbo;
 using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models;
 using ECFPerformance.Infrastructure.Data.Models.Engine;
@@ -26,6 +27,8 @@ namespace ECFPerformance.Core.Services
             ShoppingCart cart = await dbContext.ShoppingCarts
                 .Include(t => t.Turbos)
                 .FirstAsync(x => x.UserId == userId);
+
+            if (cart.Turbos.Any(t => t.Id == turboId)) return;
 
             Turbo turbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);
 

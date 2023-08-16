@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECFPerformance.Core.ViewModels
+namespace ECFPerformance.Core.ViewModels.Turbo
 {
     public class TurboInCartViewModel
     {

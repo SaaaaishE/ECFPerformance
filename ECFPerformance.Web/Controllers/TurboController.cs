@@ -1,7 +1,7 @@
 ﻿using ECFPerformance.Core.FormModels.Turbo;
 using ECFPerformance.Core.Services;
 using ECFPerformance.Core.Services.Contracts;
-using ECFPerformance.Core.ViewModels;
+using ECFPerformance.Core.ViewModels.Turbo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static ECFPerformance.Constants.GeneralApplicationConstants;
