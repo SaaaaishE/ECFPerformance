@@ -1,0 +1,24 @@
+﻿@model ShoppingCartViewModel
+
+<h1>My Cart</h1>
+
+@if(Model.TurbosInCart != null)
+{
+    <h3>Turbos: </h3>
+    <table>
+        <tbody>
+            @foreach(TurboInCartViewModel turbo in Model.TurbosInCart)
+            {
+                <tr>
+                    <td>@turbo.Name</td>
+                    <td>@turbo.Price</td>
+                    <td>@turbo.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Your Cart Is Empty</h3>
+}
