@@ -117,9 +117,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("685b497f-2221-43bc-b994-d2597d08fec0"),
+                            Id = new Guid("cf48d8c9-b475-4a6b-8f43-b4c7b336e824"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "41622b62-f025-4833-a3f0-41a6358c54db",
+                            ConcurrencyStamp = "2ef03972-799d-4316-8d89-f0bb4cd63c96",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -127,10 +127,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGjrsgUKyInA5/xTS690ne/XuX4konB2+eRtWMoHov0qz7fraU9LHM7CNTbnE3/ddQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFqov+ahyCNXRj3bx9ceNgIkvvwUC+ofRXnUid5yAvmqhlBgJRnYKAPXMD/vWz/Nlg==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05af2d01-d258-4f2a-9e18-21bc08b5508f",
+                            SecurityStamp = "c218220a-af52-4306-8b31-8ec54ad6ce32",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -570,21 +570,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.TurboShoppingCart", b =>
-                {
-                    b.Property<Guid>("ShoppingCartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("TurboId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShoppingCartId", "TurboId");
-
-                    b.HasIndex("TurboId");
-
-                    b.ToTable("TurbosShoppingCarts");
-                });
-
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Projects.ProjectCar", b =>
                 {
                     b.Property<int>("Id")
@@ -781,12 +766,12 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Property<Guid>("ShoppingCartsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("TurbosInCartId")
+                    b.Property<int>("TurbosId")
                         .HasColumnType("int");
 
-                    b.HasKey("ShoppingCartsId", "TurbosInCartId");
+                    b.HasKey("ShoppingCartsId", "TurbosId");
 
-                    b.HasIndex("TurbosInCartId");
+                    b.HasIndex("TurbosId");
 
                     b.ToTable("ShoppingCartTurbo");
                 });
@@ -861,25 +846,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ScrollType");
-                });
-
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.TurboShoppingCart", b =>
-                {
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.Turbo", "Turbo")
-                        .WithMany()
-                        .HasForeignKey("TurboId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCart");
-
-                    b.Navigation("Turbo");
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", b =>
@@ -969,7 +935,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.Turbo", null)
                         .WithMany()
-                        .HasForeignKey("TurbosInCartId")
+                        .HasForeignKey("TurbosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

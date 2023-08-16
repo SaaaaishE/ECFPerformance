@@ -21,11 +21,13 @@ namespace ECFPerformance.Web.Extensions
             {
                 if (await roleManager.RoleExistsAsync(AdminRoleName))
                 {
-                    IdentityRole<Guid> role =
+                    return;
+                }
+
+                IdentityRole<Guid> role =
                     new IdentityRole<Guid>(AdminRoleName);
 
-                    await roleManager.CreateAsync(role);
-                }
+                await roleManager.CreateAsync(role);
 
                 ApplicationUser adminUser =
                     await userManager.FindByEmailAsync(email);

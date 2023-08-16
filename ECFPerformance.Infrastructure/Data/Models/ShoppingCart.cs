@@ -13,14 +13,14 @@ namespace ECFPerformance.Infrastructure.Data.Models
         public ShoppingCart()
         {
             Id = Guid.NewGuid();
-            TurbosInCart = new HashSet<Turbo>();
+            Turbos = new HashSet<Turbo>();
         }
         public Guid Id { get; set; }
 
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
-        public ICollection<Turbo> TurbosInCart { get; set; }
+        public ICollection<Turbo> Turbos { get; set; }
     }
 }

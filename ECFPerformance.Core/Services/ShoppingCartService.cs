@@ -23,15 +23,14 @@ namespace ECFPerformance.Core.Services
 
         public async Task AddTurboToCartAsync(Guid userId, int turboId)
         {
-            ShoppingCart cart = await dbContext.ShoppingCarts.FirstAsync(x => x.UserId == userId);
+            ShoppingCart cart = await dbContext.ShoppingCarts
+                .Include(t => t.Turbos)
+                .FirstAsync(x => x.UserId == userId);
 
-            TurboShoppingCart turboShoppingCart = new TurboShoppingCart()
-            {
-                TurboId = turboId,
-                ShoppingCartId = cart.Id
-            };
+            Turbo turbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);
 
-            await dbContext.TurbosShoppingCarts.AddAsync(turboShoppingCart);
+            cart.Turbos.Add(turbo);
+            
             await dbContext.SaveChangesAsync();
         }
 
@@ -54,12 +53,12 @@ namespace ECFPerformance.Core.Services
         public async Task<ShoppingCartViewModel> GetShoppingCartByUserIdAsync(Guid userId)
         {
             ShoppingCart currentCart = await dbContext.ShoppingCarts
-                .Include(t => t.TurbosInCart)
+                .Include(t => t.Turbos)
                 .FirstAsync(x => x.UserId == userId);
 
             ShoppingCartViewModel model = new ShoppingCartViewModel()
             {
-                TurbosInCart = currentCart.TurbosInCart
+                TurbosInCart = currentCart.Turbos
                                     .Select(x => new TurboInCartViewModel()
                                     {
                                         Id = x.Id,

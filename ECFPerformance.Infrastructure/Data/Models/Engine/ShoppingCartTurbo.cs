@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECFPerformance.Infrastructure.Data.Models.Engine
 {
-    public class TurboShoppingCart
+    public class ShoppingCartTurbo
     {
         [ForeignKey(nameof(ShoppingCart))]
         public Guid ShoppingCartId { get; set; }

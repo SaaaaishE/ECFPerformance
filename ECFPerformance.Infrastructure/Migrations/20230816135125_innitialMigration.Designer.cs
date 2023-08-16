@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    [Migration("20230813193824_addScrollTypeToDbContext")]
-    partial class addScrollTypeToDbContext
+    [Migration("20230816135125_innitialMigration")]
+    partial class innitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,6 +115,27 @@ namespace ECFPerformance.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("cf48d8c9-b475-4a6b-8f43-b4c7b336e824"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2ef03972-799d-4316-8d89-f0bb4cd63c96",
+                            Email = "ecfperformance@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Alex",
+                            LastName = "Gavrilov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ecfperformance@gmail.com",
+                            NormalizedUserName = "ecfperformance@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFqov+ahyCNXRj3bx9ceNgIkvvwUC+ofRXnUid5yAvmqhlBgJRnYKAPXMD/vWz/Nlg==",
+                            PhoneNumber = "+3594567891",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c218220a-af52-4306-8b31-8ec54ad6ce32",
+                            TwoFactorEnabled = false,
+                            UserName = "ecfperformance@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Category", b =>
@@ -576,6 +597,22 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.ToTable("ProjectCars");
                 });
 
+            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("Id")
@@ -726,6 +763,21 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.ToTable("ProjectCarTurbo");
                 });
 
+            modelBuilder.Entity("ShoppingCartTurbo", b =>
+                {
+                    b.Property<Guid>("ShoppingCartsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TurbosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ShoppingCartsId", "TurbosId");
+
+                    b.HasIndex("TurbosId");
+
+                    b.ToTable("ShoppingCartTurbo");
+                });
+
             modelBuilder.Entity("ConnectingRodProjectCar", b =>
                 {
                     b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", null)
@@ -798,6 +850,17 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Navigation("ScrollType");
                 });
 
+            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
@@ -854,6 +917,21 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasOne("ECFPerformance.Infrastructure.Data.Models.Projects.ProjectCar", null)
                         .WithMany()
                         .HasForeignKey("ProjectCarsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.Turbo", null)
+                        .WithMany()
+                        .HasForeignKey("TurbosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ShoppingCartTurbo", b =>
+                {
+                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", null)
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
