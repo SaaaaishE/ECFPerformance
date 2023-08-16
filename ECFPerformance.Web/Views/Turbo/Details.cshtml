@@ -14,8 +14,6 @@
     </div>
 </div>
 
-<p style="visibility: hidden" id="turboId">@Model.Id</p>
-
 <br />
 
 @if (User.IsInRole(AdminRoleName))
@@ -25,6 +23,6 @@
 
 <br />
 
-<button type="submit" id="addToCartButton" class="btn btn-primary btn-lg">ADD TO CART</button>
+<button type="submit" onclick="addToCart(@Model.Id)" class="btn btn-primary btn-lg">ADD TO CART</button>
 
 <script src="~/js/turbo.js"></script>
