@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    partial class EcfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230817132548_nz")]
+    partial class nz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,9 +119,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ab2fe85-1718-4c3a-895b-3885d854f91e"),
+                            Id = new Guid("9b7e5024-a088-4976-8349-b45e1f923750"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7bf85741-e21e-4898-80f8-9db2722d3370",
+                            ConcurrencyStamp = "5875d253-5141-402a-9fbc-813b8e0597b3",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -127,10 +129,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENs+xtRUGEWJqYDYa8+y2Sn4t8OKZAJaQp1L9Xdp6yJmaTWAHQSHaTOxRwqAqfk7fQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELV36hvHwXQZ0pSodqmKDOpEfV8ln+fYp6JWaLJykoae5JJ4NwWfEB5Pkeuy3MB0lA==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1be49b45-0925-40c5-951e-a8139dc6694f",
+                            SecurityStamp = "fd413afd-d212-4792-8b5f-621b08a98077",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -570,29 +572,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Projects.ProjectCar", b =>
                 {
                     b.Property<int>("Id")
@@ -869,17 +848,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ScrollType");
-                });
-
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Order", b =>
-                {
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", b =>

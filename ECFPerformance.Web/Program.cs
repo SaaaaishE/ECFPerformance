@@ -41,6 +41,7 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
             builder.Services.AddScoped<ITurboService, TurboService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             builder.Services.AddControllersWithViews();
 

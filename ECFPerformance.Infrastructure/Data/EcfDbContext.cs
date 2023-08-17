@@ -22,6 +22,7 @@ namespace ECFPerformance.Infrastructure.Data
         public DbSet<Turbo> Turbos { get; set; }
         public DbSet<TurboScrollType> ScrollTypes { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

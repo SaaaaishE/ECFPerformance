@@ -2,7 +2,7 @@
 
 <h1>My Cart</h1>
 
-@if (Model.TurbosInCart != null)
+@if (Model.TurbosInCart != null && Model.TurbosInCart.Count() > 0)
 {
     <h3>Turbos: </h3>
     <table>
@@ -25,5 +25,10 @@
 }
 else
 {
-    <h3>Your Cart Is Empty</h3>
+    <p class="text-warning text-md-start">Your Cart Is Empty</p>
+    <a class="btn btn-primary btn-md" asp-area="" asp-controller="Category" asp-action="Index">Products</a>
 }
+
+<br />
+
+<a asp-area="" asp-controller="Order" asp-action="PlaceOrder" class="btn btn-success">PLACE ORDER</a>

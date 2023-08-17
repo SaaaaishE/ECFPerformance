@@ -1,4 +1,5 @@
 ﻿using ECFPerformance.Infrastructure.Contracts;
+using ECFPerformance.Infrastructure.Data.Enums;
 using ECFPerformance.Infrastructure.Data.Models.Projects;
 using System;
 using System.Collections.Generic;

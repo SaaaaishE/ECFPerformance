@@ -1,6 +1,7 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
+using ECFPerformance.Infrastructure.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,10 @@ namespace ECFPerformance.Core.Services
                .Select(t => new AllProductsViewModel
                {
                    Id = t.Id,
+                   SubCategory = SubCategoryEnum.Turbo,
                    Name = t.Name,
                    MainImage = t.MainImage,
-                   CategoryName = t.Category.CategoryName
+                   Price = t.Price,
                })
                .ToArrayAsync();
 
@@ -36,9 +38,10 @@ namespace ECFPerformance.Core.Services
                 .Select(r => new AllProductsViewModel
                 {
                     Id = r.Id,
+                    SubCategory = SubCategoryEnum.ConnectingRod,
                     Name = r.Name,
                     MainImage = r.MainImage,
-                    CategoryName = r.Category.CategoryName
+                    Price = r.Price,
                 })
                 .ToArrayAsync();
 
