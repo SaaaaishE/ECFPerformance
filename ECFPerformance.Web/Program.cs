@@ -45,13 +45,11 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
 
             builder.Services.AddControllersWithViews();
 
-            /*
-             * builder.Services.ConfigureApplicationCookie(cfg =>
+            builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";
             });
-             */
-
+            /*
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.Events = new CookieAuthenticationEvents
@@ -64,6 +62,7 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
                 };
 
             });
+            */
 
             var app = builder.Build();
 
