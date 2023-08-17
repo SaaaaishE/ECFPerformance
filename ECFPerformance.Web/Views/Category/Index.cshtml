@@ -22,6 +22,22 @@
                         <p class="col-md-6">@item.Name</p>
                         break;
                 }
+
+                if (User.IsInRole(AdminRoleName))
+                {
+                    <p class="col-md-6">Quantity @item.Quantity</p>
+                }
+                else
+                {
+                    if(item.Quantity > 0)
+                    {
+                        <p class="col-md-6">Available</p>
+                    }
+                    else
+                    {
+                        <p class="col-md-6">Out of stock</p>
+                    }
+                }
             }
             <p class="col-md-6">$ @item.Price</p>
             <br />

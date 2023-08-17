@@ -22,7 +22,9 @@
 }
 
 <br />
-
-<button type="submit" onclick="addToCart(@Model.Id)" class="btn btn-primary btn-lg">ADD TO CART</button>
+@if (!User.IsInRole(AdminRoleName))
+{
+    <button type="submit" onclick="addToCart(@Model.Id)" class="btn btn-primary btn-lg">ADD TO CART</button>
+}
 
 <script src="~/js/turbo.js"></script>

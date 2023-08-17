@@ -13,16 +13,19 @@ namespace ECFPerformance.Infrastructure.Data.Models
         public Order()
         {
             Id = Guid.NewGuid();
+            CreatedOn = DateTime.Now;
         }
         [Key]
         public Guid Id { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal TotalPrice { get; set; }

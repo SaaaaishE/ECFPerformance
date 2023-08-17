@@ -1,4 +1,5 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
+using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,25 @@ namespace ECFPerformance.Core.Services
             this.dbContext = dbContext;
         }
 
-        public async Task PlaceOrder(Guid userId)
+        public async Task<IEnumerable<OrderViewModel>> GetOrdersAsync()
+        {
+            return await dbContext.Orders
+                .Include(u => u.User)
+                .OrderByDescending(o => o.CreatedOn)
+                .Select(o => new OrderViewModel()
+                {
+                    Id = o.Id,
+                    Description = o.Description,
+                    TotalPrice = o.TotalPrice,
+                    UserId = o.UserId,
+                    UserEmail = o.User.Email,
+                    UserPhone = o.User.PhoneNumber,
+                    CreatedOn = o.CreatedOn,
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task PlaceOrderAsync(Guid userId)
         {
             StringBuilder orderDescr = new StringBuilder();
             ShoppingCart currentCart = await dbContext.ShoppingCarts
@@ -45,6 +64,8 @@ namespace ECFPerformance.Core.Services
                 Description = orderDescr.ToString(),
                 TotalPrice = totalPrice,
             };
+
+            currentCart.Turbos.Clear();
 
             await dbContext.Orders.AddAsync(order);
             await dbContext.SaveChangesAsync();

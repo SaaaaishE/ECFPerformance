@@ -16,7 +16,7 @@ namespace ECFPerformance.Web.Controllers
         public async Task<IActionResult> PlaceOrder()
         {
             Guid userId = Guid.Parse(User.GetId());
-            await orderService.PlaceOrder(userId);
+            await orderService.PlaceOrderAsync(userId);
 
             return View();
         }

@@ -1,5 +1,6 @@
 ﻿using ECFPerformance.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using static ECFPerformance.Constants.GeneralApplicationConstants;
 
 namespace ECFPerformance.Web.Extensions
@@ -17,10 +18,19 @@ namespace ECFPerformance.Web.Extensions
             RoleManager<IdentityRole<Guid>> roleManager =
                 serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
 
+
             Task.Run(async () =>
             {
+                ApplicationUser adminUser =
+                    await userManager.FindByEmailAsync(email);
+
                 if (await roleManager.RoleExistsAsync(AdminRoleName))
                 {
+                    if(!await userManager.IsInRoleAsync(adminUser, AdminRoleName))
+                    {
+                        await userManager.AddToRoleAsync(adminUser, AdminRoleName);
+                    }
+
                     return;
                 }
 
@@ -28,9 +38,6 @@ namespace ECFPerformance.Web.Extensions
                     new IdentityRole<Guid>(AdminRoleName);
 
                 await roleManager.CreateAsync(role);
-
-                ApplicationUser adminUser =
-                    await userManager.FindByEmailAsync(email);
 
                 await userManager.AddToRoleAsync(adminUser, AdminRoleName);
             })

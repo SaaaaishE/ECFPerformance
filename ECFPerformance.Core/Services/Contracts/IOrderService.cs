@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECFPerformance.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace ECFPerformance.Core.Services.Contracts
 {
     public interface IOrderService
     {
-        public Task PlaceOrder(Guid userId);
+        public Task<IEnumerable<OrderViewModel>> GetOrdersAsync();
+        public Task PlaceOrderAsync(Guid userId);
     }
 }

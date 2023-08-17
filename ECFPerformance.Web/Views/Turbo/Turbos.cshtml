@@ -20,7 +20,10 @@
             @if(turbo.Quantity > 0)
             {
                 <p>Available</p>
-                <button onclick="addToCart(@turbo.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                @if (!User.IsInRole(AdminRoleName))
+                {
+                    <button onclick="addToCart(@turbo.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                }
             } else
             {
                 <p>Out of stock</p>

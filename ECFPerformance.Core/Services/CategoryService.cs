@@ -31,6 +31,7 @@ namespace ECFPerformance.Core.Services
                    Name = t.Name,
                    MainImage = t.MainImage,
                    Price = t.Price,
+                   Quantity = t.Quantity,
                })
                .ToArrayAsync();
 
@@ -42,6 +43,7 @@ namespace ECFPerformance.Core.Services
                     Name = r.Name,
                     MainImage = r.MainImage,
                     Price = r.Price,
+                    Quantity = r.Quantity,
                 })
                 .ToArrayAsync();
 
