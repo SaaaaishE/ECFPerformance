@@ -19,10 +19,11 @@
             <p>Scroll Type: @turbo.ScrollType.ScrollType</p>
             @if(turbo.Quantity > 0)
             {
+                string btnId = "btn" + turbo.Id;
                 <p>Available</p>
                 @if (!User.IsInRole(AdminRoleName))
                 {
-                    <button onclick="addToCart(@turbo.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                    <button id=@btnId onclick="addToCart(@turbo.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
                 }
             } else
             {
