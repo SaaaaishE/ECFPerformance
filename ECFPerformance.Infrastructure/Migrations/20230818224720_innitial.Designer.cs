@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    [Migration("20230817142846_implementOrders")]
-    partial class implementOrders
+    [Migration("20230818224720_innitial")]
+    partial class innitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,21 @@ namespace ECFPerformance.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ConnectingRodEngineType", b =>
+                {
+                    b.Property<int>("ConnectingRodsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EngineTypesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ConnectingRodsId", "EngineTypesId");
+
+                    b.HasIndex("EngineTypesId");
+
+                    b.ToTable("ConnectingRodEngineType");
+                });
 
             modelBuilder.Entity("ConnectingRodProjectCar", b =>
                 {
@@ -119,9 +134,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ab2fe85-1718-4c3a-895b-3885d854f91e"),
+                            Id = new Guid("8a73fc76-579a-47bd-8852-52d4509311a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7bf85741-e21e-4898-80f8-9db2722d3370",
+                            ConcurrencyStamp = "0fe1b535-5004-4474-8275-a06dea4b1378",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -129,10 +144,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENs+xtRUGEWJqYDYa8+y2Sn4t8OKZAJaQp1L9Xdp6yJmaTWAHQSHaTOxRwqAqfk7fQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO1c9Wtq6A4/oXUdD4myNp7R8cW9E6pWUVuSzwdN3wz+HR6O+M/F9+oPrXCpjYCIEw==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1be49b45-0925-40c5-951e-a8139dc6694f",
+                            SecurityStamp = "5b99cafb-fcaa-4778-bab6-5ee73669904e",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -222,86 +237,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("ConnectingRods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BeamTypeId = 1,
-                            CategoryId = 1,
-                            Length = 135,
-                            MainImage = "https://www.eaglerod.com/images/1c475ca0-bfd5-11ea-b02a-c48ef5f8d3b6/jpg/5313-4340-h-beam-bmw-38-arp-2000-bolts/crs-5313b63d-1.jpg",
-                            Make = "Eagle",
-                            Name = "BMW Beam Type I Connecting Rod 135mm",
-                            PistonBoltDiameter = 22,
-                            Price = 670m,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BeamTypeId = 2,
-                            CategoryId = 1,
-                            Length = 135,
-                            MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-6/default/main/forged-rods-cr-6(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp",
-                            Make = "MaxPeedingRods",
-                            Name = "BMW Beam Type H Connecting Rod 135mm",
-                            PistonBoltDiameter = 22,
-                            Price = 580m,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BeamTypeId = 2,
-                            CategoryId = 1,
-                            Length = 133,
-                            MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000",
-                            Make = "MaxPeedingRods",
-                            Name = "Mazda H Beam ",
-                            PistonBoltDiameter = 20,
-                            Price = 357m,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BeamTypeId = 1,
-                            CategoryId = 1,
-                            Length = 133,
-                            MainImage = "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/84c3ce8a-bfd5-11ea-87b6-e6954ea1f6b1.jpg",
-                            Make = "Eagle",
-                            Name = "Mazda I Beam",
-                            PistonBoltDiameter = 20,
-                            Price = 460m,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BeamTypeId = 2,
-                            CategoryId = 1,
-                            Length = 137,
-                            MainImage = "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp",
-                            Make = "MaxPeedingRods",
-                            Name = "Honda H Beam",
-                            PistonBoltDiameter = 19,
-                            Price = 359m,
-                            Quantity = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BeamTypeId = 1,
-                            CategoryId = 1,
-                            Length = 137,
-                            MainImage = "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/870fa77e-bfd3-11ea-b02b-15c463fe2bce.jpg",
-                            Make = "Eagle",
-                            Name = "Honda I Beam",
-                            PistonBoltDiameter = 19,
-                            Price = 465m,
-                            Quantity = 3
-                        });
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRodBeamType", b =>
@@ -332,83 +267,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRodEngineType", b =>
-                {
-                    b.Property<int>("CompatibleEngineId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompatibleRodId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CompatibleEngineId", "CompatibleRodId");
-
-                    b.HasIndex("CompatibleRodId");
-
-                    b.ToTable("ConnectingRodEngineType");
-
-                    b.HasData(
-                        new
-                        {
-                            CompatibleEngineId = 1,
-                            CompatibleRodId = 1
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 1,
-                            CompatibleRodId = 2
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 2,
-                            CompatibleRodId = 1
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 2,
-                            CompatibleRodId = 2
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 5,
-                            CompatibleRodId = 3
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 5,
-                            CompatibleRodId = 4
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 6,
-                            CompatibleRodId = 3
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 6,
-                            CompatibleRodId = 4
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 3,
-                            CompatibleRodId = 5
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 3,
-                            CompatibleRodId = 6
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 4,
-                            CompatibleRodId = 5
-                        },
-                        new
-                        {
-                            CompatibleEngineId = 4,
-                            CompatibleRodId = 6
-                        });
-                });
-
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.EngineType", b =>
                 {
                     b.Property<int>("Id")
@@ -422,7 +280,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EngineType");
+                    b.ToTable("EngineTypes");
 
                     b.HasData(
                         new
@@ -578,6 +436,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -618,6 +479,15 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProjectCars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Engine: \n - M50B28 stroker \n - ConnectingRods - Forged MaxPeedingRods \n - Pistons - From M40B18 Engine \n - Turbo - GT35 \n - HorsePower - ~ 400 \nChassis: \n - E36 Coupe \n - Angle Kit - WiseFab Replica",
+                            MainImage = "/imgs/valkata.jpg",
+                            Name = "E36 Coupe M50B28 Turbo"
+                        });
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", b =>
@@ -801,6 +671,21 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.ToTable("ShoppingCartTurbo");
                 });
 
+            modelBuilder.Entity("ConnectingRodEngineType", b =>
+                {
+                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", null)
+                        .WithMany()
+                        .HasForeignKey("ConnectingRodsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.EngineType", null)
+                        .WithMany()
+                        .HasForeignKey("EngineTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ConnectingRodProjectCar", b =>
                 {
                     b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", null)
@@ -833,25 +718,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Navigation("BeamType");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRodEngineType", b =>
-                {
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.EngineType", "CompatibleEngine")
-                        .WithMany("ConnectingRods")
-                        .HasForeignKey("CompatibleEngineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", "CompatibleRod")
-                        .WithMany("CompatibleEngines")
-                        .HasForeignKey("CompatibleRodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CompatibleEngine");
-
-                    b.Navigation("CompatibleRod");
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.Turbo", b =>
@@ -983,17 +849,7 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.Navigation("Turbos");
                 });
 
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", b =>
-                {
-                    b.Navigation("CompatibleEngines");
-                });
-
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRodBeamType", b =>
-                {
-                    b.Navigation("ConnectingRods");
-                });
-
-            modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.Engine.EngineType", b =>
                 {
                     b.Navigation("ConnectingRods");
                 });

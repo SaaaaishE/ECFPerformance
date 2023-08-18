@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECFPerformance.Infrastructure.Migrations
 {
-    public partial class innitialMigration : Migration
+    public partial class innitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,7 +77,7 @@ namespace ECFPerformance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EngineType",
+                name: "EngineTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -86,7 +86,7 @@ namespace ECFPerformance.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EngineType", x => x.Id);
+                    table.PrimaryKey("PK_EngineTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,6 +224,27 @@ namespace ECFPerformance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ShoppingCarts",
                 columns: table => new
                 {
@@ -309,22 +330,22 @@ namespace ECFPerformance.Infrastructure.Migrations
                 name: "ConnectingRodEngineType",
                 columns: table => new
                 {
-                    CompatibleEngineId = table.Column<int>(type: "int", nullable: false),
-                    CompatibleRodId = table.Column<int>(type: "int", nullable: false)
+                    ConnectingRodsId = table.Column<int>(type: "int", nullable: false),
+                    EngineTypesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConnectingRodEngineType", x => new { x.CompatibleEngineId, x.CompatibleRodId });
+                    table.PrimaryKey("PK_ConnectingRodEngineType", x => new { x.ConnectingRodsId, x.EngineTypesId });
                     table.ForeignKey(
-                        name: "FK_ConnectingRodEngineType_ConnectingRods_CompatibleRodId",
-                        column: x => x.CompatibleRodId,
+                        name: "FK_ConnectingRodEngineType_ConnectingRods_ConnectingRodsId",
+                        column: x => x.ConnectingRodsId,
                         principalTable: "ConnectingRods",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ConnectingRodEngineType_EngineType_CompatibleEngineId",
-                        column: x => x.CompatibleEngineId,
-                        principalTable: "EngineType",
+                        name: "FK_ConnectingRodEngineType_EngineTypes_EngineTypesId",
+                        column: x => x.EngineTypesId,
+                        principalTable: "EngineTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -404,7 +425,7 @@ namespace ECFPerformance.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("cf48d8c9-b475-4a6b-8f43-b4c7b336e824"), 0, "2ef03972-799d-4316-8d89-f0bb4cd63c96", "ecfperformance@gmail.com", false, "Alex", "Gavrilov", false, null, "ecfperformance@gmail.com", "ecfperformance@gmail.com", "AQAAAAEAACcQAAAAEFqov+ahyCNXRj3bx9ceNgIkvvwUC+ofRXnUid5yAvmqhlBgJRnYKAPXMD/vWz/Nlg==", "+3594567891", false, "c218220a-af52-4306-8b31-8ec54ad6ce32", false, "ecfperformance@gmail.com" });
+                values: new object[] { new Guid("8a73fc76-579a-47bd-8852-52d4509311a9"), 0, "0fe1b535-5004-4474-8275-a06dea4b1378", "ecfperformance@gmail.com", false, "Alex", "Gavrilov", false, null, "ecfperformance@gmail.com", "ecfperformance@gmail.com", "AQAAAAEAACcQAAAAEO1c9Wtq6A4/oXUdD4myNp7R8cW9E6pWUVuSzwdN3wz+HR6O+M/F9+oPrXCpjYCIEw==", "+3594567891", false, "5b99cafb-fcaa-4778-bab6-5ee73669904e", false, "ecfperformance@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -427,7 +448,7 @@ namespace ECFPerformance.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EngineType",
+                table: "EngineTypes",
                 columns: new[] { "Id", "EngineCode" },
                 values: new object[,]
                 {
@@ -440,25 +461,17 @@ namespace ECFPerformance.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ProjectCars",
+                columns: new[] { "Id", "Description", "MainImage", "Name" },
+                values: new object[] { 1, "Engine: \n - M50B28 stroker \n - ConnectingRods - Forged MaxPeedingRods \n - Pistons - From M40B18 Engine \n - Turbo - GT35 \n - HorsePower - ~ 400 \nChassis: \n - E36 Coupe \n - Angle Kit - WiseFab Replica", "/imgs/valkata.jpg", "E36 Coupe M50B28 Turbo" });
+
+            migrationBuilder.InsertData(
                 table: "ScrollTypes",
                 columns: new[] { "Id", "ScrollType" },
                 values: new object[,]
                 {
                     { 1, 1 },
                     { 2, 0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ConnectingRods",
-                columns: new[] { "Id", "BeamTypeId", "CategoryId", "Length", "MainImage", "Make", "Name", "PistonBoltDiameter", "Price", "Quantity" },
-                values: new object[,]
-                {
-                    { 1, 1, 1, 135, "https://www.eaglerod.com/images/1c475ca0-bfd5-11ea-b02a-c48ef5f8d3b6/jpg/5313-4340-h-beam-bmw-38-arp-2000-bolts/crs-5313b63d-1.jpg", "Eagle", "BMW Beam Type I Connecting Rod 135mm", 22, 670m, 3 },
-                    { 2, 2, 1, 135, "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-6/default/main/forged-rods-cr-6(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp", "MaxPeedingRods", "BMW Beam Type H Connecting Rod 135mm", 22, 580m, 3 },
-                    { 3, 2, 1, 133, "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000", "MaxPeedingRods", "Mazda H Beam ", 20, 357m, 3 },
-                    { 4, 1, 1, 133, "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/84c3ce8a-bfd5-11ea-87b6-e6954ea1f6b1.jpg", "Eagle", "Mazda I Beam", 20, 460m, 3 },
-                    { 5, 2, 1, 137, "https://webp.cqggedm.com/image/brand-max/gallery/en-gb/rod/forged-rods-cr-4/default/main/forged-rods-cr-4(1).jpg?x-oss-process=image/auto-orient,1/quality,q_70/resize,m_mfit,w_1000,h_1000/format,webp", "MaxPeedingRods", "Honda H Beam", 19, 359m, 3 },
-                    { 6, 1, 1, 137, "https://cdn.yellowhatweb.com/file/storage-yellowhatweb-com/870fa77e-bfd3-11ea-b02b-15c463fe2bce.jpg", "Eagle", "Honda I Beam", 19, 465m, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -470,25 +483,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     { 2, 1, "https://s19529.pcdn.co/wp-content/uploads/2021/02/Screen-Shot-2021-02-22-at-10.05.38-AM.png", "MaxPeedingRods", "GT35", 230.00m, 3, 1 },
                     { 3, 1, "https://th.bing.com/th/id/OIP.z3vjnJxtodUyIYBQigac8gHaGw?pid=ImgDet&rs=1", "Holset", "HX40", 500.00m, 3, 2 },
                     { 4, 1, "https://th.bing.com/th/id/R.145fdefb10871f3b499c8e9bbc1ff9c8?rik=w4kn89cj4XnJlw&pid=ImgRaw&r=0", "Holset", "HX35", 450.00m, 3, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ConnectingRodEngineType",
-                columns: new[] { "CompatibleEngineId", "CompatibleRodId" },
-                values: new object[,]
-                {
-                    { 1, 1 },
-                    { 1, 2 },
-                    { 2, 1 },
-                    { 2, 2 },
-                    { 3, 5 },
-                    { 3, 6 },
-                    { 4, 5 },
-                    { 4, 6 },
-                    { 5, 3 },
-                    { 5, 4 },
-                    { 6, 3 },
-                    { 6, 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -531,9 +525,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConnectingRodEngineType_CompatibleRodId",
+                name: "IX_ConnectingRodEngineType_EngineTypesId",
                 table: "ConnectingRodEngineType",
-                column: "CompatibleRodId");
+                column: "EngineTypesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ConnectingRodProjectCar_ProjectCarsId",
@@ -549,6 +543,11 @@ namespace ECFPerformance.Infrastructure.Migrations
                 name: "IX_ConnectingRods_CategoryId",
                 table: "ConnectingRods",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectCarTurbo_TurbosId",
@@ -600,6 +599,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                 name: "ConnectingRodProjectCar");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "ProjectCarTurbo");
 
             migrationBuilder.DropTable(
@@ -609,7 +611,7 @@ namespace ECFPerformance.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "EngineType");
+                name: "EngineTypes");
 
             migrationBuilder.DropTable(
                 name: "ConnectingRods");

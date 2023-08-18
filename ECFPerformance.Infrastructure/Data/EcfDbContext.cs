@@ -45,11 +45,11 @@ namespace ECFPerformance.Infrastructure.Data
             builder.Entity<Turbo>()
                 .HasData(Seeder.SeedTurbos());
 
-            builder.Entity<ConnectingRod>()
-                .HasData(Seeder.SeedConnectingRods());
+           // builder.Entity<ConnectingRod>()
+              //  .HasData(Seeder.SeedConnectingRods());
 
-            builder.Entity<ConnectingRodEngineType>()
-                .HasData(Seeder.SeedRodsEngines());
+            //builder.Entity<ConnectingRodEngineType>()
+               // .HasData(Seeder.SeedRodsEngines());
 
             builder.Entity<ProjectCar>()
                 .HasData(Seeder.SeedProjectCars());

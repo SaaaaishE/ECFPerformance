@@ -23,7 +23,7 @@ namespace ECFPerformance.Infrastructure.Data.Seed
         private static Category[] categories;
         private static Turbo[] turbos;
         private static ConnectingRod[] connectingRods;
-        private static ConnectingRodEngineType[] connectingRodEngineTypes;
+       // private static ConnectingRodEngineType[] connectingRodEngineTypes;
         private static ProjectCar[] projectCars;
 
         public static ApplicationUser[] SeedAdmin()
@@ -288,6 +288,7 @@ namespace ECFPerformance.Infrastructure.Data.Seed
             return connectingRods;
         }
 
+        /*
         public static ConnectingRodEngineType[] SeedRodsEngines()
         {
             connectingRodEngineTypes = new ConnectingRodEngineType[12];
@@ -359,7 +360,7 @@ namespace ECFPerformance.Infrastructure.Data.Seed
             };
 
             return connectingRodEngineTypes;
-        }
+        } */
 
         public static ProjectCar[] SeedProjectCars()
         {
