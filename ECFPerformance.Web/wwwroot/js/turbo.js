@@ -9,5 +9,17 @@ async function addToCart(turboId) {
         btn.className = "btn btn-primary btn-sm";
     }, 300)
 
-    await post(`/ShoppingCart/AddTurboToCart/${turboId}`);
+    try {
+        await post(`/ShoppingCart/AddTurboToCart/${turboId}`);
+    }
+    catch {
+        let currentUrl = window.location.href;
+        currentUrl = currentUrl.split('/');
+        currentUrl[3] = "User";
+        currentUrl[4] = "Login";
+
+        let newUrl = currentUrl.join('/');
+
+        window.location = newUrl;
+    }
 }

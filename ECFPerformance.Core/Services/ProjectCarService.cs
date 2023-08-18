@@ -1,6 +1,7 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
+using ECFPerformance.Infrastructure.Data.Models.Projects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,19 @@ namespace ECFPerformance.Core.Services
                     Description = x.Description
                 })
                 .ToArrayAsync();
+        }
+
+        public async Task<ProjectCarViewModel> GetProjectCarAsync(int id)
+        {
+            ProjectCar projectCar = await dbContext.ProjectCars.FirstAsync(x => x.Id == id);
+
+            return new ProjectCarViewModel()
+            {
+                Id = projectCar.Id,
+                Name = projectCar.Name,
+                MainImage = projectCar.MainImage,
+                Description = projectCar.Description
+            };
         }
     }
 }
