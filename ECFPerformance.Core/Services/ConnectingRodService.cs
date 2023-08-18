@@ -64,34 +64,98 @@ namespace ECFPerformance.Core.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public Task EditRodAsync(int rodId, ConnectingRodFormModel model)
+        public async Task EditRodAsync(int rodId, ConnectingRodFormModel model)
         {
-            throw new NotImplementedException();
+            HashSet<EngineType> engineTypes = new HashSet<EngineType>();
+
+            foreach (EngineTypeViewModel viewModel in model.EngineTypes)
+            {
+                EngineType currentEngineType = await dbContext.EngineTypes
+                    .FirstAsync(et => et.EngineCode == viewModel.EngineType);
+
+                engineTypes.Add(currentEngineType);
+            }
+
+            ConnectingRod rod = await dbContext.ConnectingRods.FirstAsync(r => r.Id == rodId);
+
+            rod.Name = model.Name;
+            rod.Make = model.Make;
+            rod.Length = model.Length;
+            rod.Quantity = model.Quantity;
+            rod.Price = model.Price;
+            rod.PistonBoltDiameter = model.PistonBoltDiameter;
+            rod.BeamTypeId = model.BeamTypeId;
+            rod.EngineTypes = engineTypes;
+            rod.MainImage = model.MainImage;
+
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<BeamTypeViewModel>> GetAllBeamTypesAsync()
+        public async Task<IEnumerable<BeamTypeViewModel>> GetAllBeamTypesAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.ConnectingRodBeamTypes
+                .Select(b => new BeamTypeViewModel()
+                {
+                    Id = b.Id,
+                    BeamType = b.ConnectingRodBeam,
+                })
+                .ToArrayAsync();
         }
 
-        public Task<IEnumerable<EngineTypeViewModel>> GetAllEngineTypesAsync()
+        public async Task<IEnumerable<EngineTypeViewModel>> GetAllEngineTypesAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.EngineTypes
+                .Select(e => new EngineTypeViewModel()
+                {
+                    Id = e.Id,
+                    EngineType = e.EngineCode,
+                })
+                .ToArrayAsync();
         }
 
-        public Task<IEnumerable<AllConnectingRodsViewModel>> GetAllRodsAsync()
+        public async Task<IEnumerable<AllConnectingRodsViewModel>> GetAllRodsAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.ConnectingRods
+                .Select(c => new AllConnectingRodsViewModel()
+                {
+                    Id = c.Id,
+                    MainImage = c.MainImage,
+                    Name = c.Name,
+                    Price = c.Price,
+                    Quantity = c.Quantity,
+                    BeamType = c.BeamType.ConnectingRodBeam
+                })
+                .ToArrayAsync();
         }
 
-        public Task<ConnectingRodViewModel> GetRodByIdAsync(int rodId)
+        public async Task<ConnectingRodViewModel> GetRodByIdAsync(int rodId)
         {
-            throw new NotImplementedException();
+            ConnectingRod rod = await dbContext.ConnectingRods.FirstAsync(r => r.Id == rodId);
+
+            return new ConnectingRodViewModel()
+            {
+                Id = rod.Id,
+                Length = rod.Length,
+                MainImage = rod.MainImage,
+                Name = rod.Name,
+                Make = rod.Make,
+                Price = rod.Price,
+                PistonBoltDiameter = rod.PistonBoltDiameter,
+                Quantity = rod.Quantity,
+            };
         }
 
-        public Task<ConnectingRodFormModel> GetRodFormByIdAsync(int rodId)
+        //todo
+        public async Task<ConnectingRodFormModel> GetRodFormByIdAsync(int rodId)
         {
-            throw new NotImplementedException();
+            ConnectingRod rod = await dbContext.ConnectingRods.FirstAsync(r => r.Id == rodId);
+
+            return new ConnectingRodFormModel()
+            {
+                Length = rod.Length,
+                Make = rod.Make,
+
+            };
         }
     }
 }

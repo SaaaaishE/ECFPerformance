@@ -24,6 +24,7 @@ namespace ECFPerformance.Infrastructure.Data
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<EngineType> EngineTypes { get; set; }
+        public DbSet<ConnectingRodBeamType> ConnectingRodBeamTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -45,11 +46,8 @@ namespace ECFPerformance.Infrastructure.Data
             builder.Entity<Turbo>()
                 .HasData(Seeder.SeedTurbos());
 
-           // builder.Entity<ConnectingRod>()
-              //  .HasData(Seeder.SeedConnectingRods());
-
-            //builder.Entity<ConnectingRodEngineType>()
-               // .HasData(Seeder.SeedRodsEngines());
+            builder.Entity<ConnectingRod>()
+                .HasData(Seeder.SeedConnectingRods());
 
             builder.Entity<ProjectCar>()
                 .HasData(Seeder.SeedProjectCars());
