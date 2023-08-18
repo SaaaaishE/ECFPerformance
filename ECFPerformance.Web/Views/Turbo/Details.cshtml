@@ -24,7 +24,8 @@
 <br />
 @if (!User.IsInRole(AdminRoleName))
 {
-    <button type="submit" onclick="addToCart(@Model.Id)" class="btn btn-primary btn-lg">ADD TO CART</button>
+    string btnId = "btn" + Model.Id;
+    <button id=@btnId type="submit" onclick="addToCart(@Model.Id)" class="btn btn-primary btn-lg">ADD TO CART</button>
 }
 
 <script src="~/js/turbo.js"></script>

@@ -32,6 +32,11 @@
                     if(item.Quantity > 0)
                     {
                         <p class="col-md-6">Available</p>
+                        if(item.SubCategory == SubCategoryEnum.Turbo)
+                        {
+                            string btnId = "btn" + item.Id;
+                            <button id=@btnId onclick="addToCart(@item.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                        }
                     }
                     else
                     {
@@ -44,3 +49,5 @@
         </div>
     }
 </div>
+
+<script src="~/js/turbo.js"></script>

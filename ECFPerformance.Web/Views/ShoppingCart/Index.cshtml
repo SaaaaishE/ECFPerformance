@@ -22,6 +22,9 @@
             }
         </tbody>
     </table>
+    <br />
+
+    <a asp-area="" asp-controller="Order" asp-action="PlaceOrder" class="btn btn-success">PLACE ORDER</a>
 }
 else
 {
@@ -29,6 +32,3 @@ else
     <a class="btn btn-primary btn-md" asp-area="" asp-controller="Category" asp-action="Index">Products</a>
 }
 
-<br />
-
-<a asp-area="" asp-controller="Order" asp-action="PlaceOrder" class="btn btn-success">PLACE ORDER</a>
