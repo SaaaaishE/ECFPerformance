@@ -37,6 +37,8 @@ namespace ECFPerformance.Infrastructure.Data.Migrations
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<EcfDbContext>();
 
+
+            builder.Services.AddScoped<IProjectCarService, ProjectCarService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ITurboService, TurboService>();
             builder.Services.AddScoped<IUserService, UserService>();

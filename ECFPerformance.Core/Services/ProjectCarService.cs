@@ -27,6 +27,7 @@ namespace ECFPerformance.Core.Services
                     Id = x.Id,
                     Name = x.Name,
                     MainImage = x.MainImage,
+                    Description = x.Description
                 })
                 .ToArrayAsync();
         }

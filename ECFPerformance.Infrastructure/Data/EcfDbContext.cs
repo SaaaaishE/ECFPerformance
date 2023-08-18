@@ -54,6 +54,9 @@ namespace ECFPerformance.Infrastructure.Data
             builder.Entity<ConnectingRodEngineType>()
                 .HasData(Seeder.SeedRodsEngines());
 
+            builder.Entity<ProjectCar>()
+                .HasData(Seeder.SeedProjectCars());
+
             base.OnModelCreating(builder);
         }
     }

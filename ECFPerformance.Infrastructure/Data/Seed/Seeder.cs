@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using static ECFPerformance.Constants.GeneralApplicationConstants;
+using ECFPerformance.Infrastructure.Data.Models.Projects;
 
 namespace ECFPerformance.Infrastructure.Data.Seed
 {
@@ -23,6 +24,7 @@ namespace ECFPerformance.Infrastructure.Data.Seed
         private static Turbo[] turbos;
         private static ConnectingRod[] connectingRods;
         private static ConnectingRodEngineType[] connectingRodEngineTypes;
+        private static ProjectCar[] projectCars;
 
         public static ApplicationUser[] SeedAdmin()
         {
@@ -357,6 +359,31 @@ namespace ECFPerformance.Infrastructure.Data.Seed
             };
 
             return connectingRodEngineTypes;
+        }
+
+        public static ProjectCar[] SeedProjectCars()
+        {
+            projectCars = new ProjectCar[1];
+
+            string valkataDescr = "Engine: \n" +
+                                  " - M50B28 stroker \n" +
+                                  " - ConnectingRods - Forged MaxPeedingRods \n" +
+                                  " - Pistons - From M40B18 Engine \n" +
+                                  " - Turbo - GT35 \n" +
+                                  " - HorsePower - ~ 400 \n" +
+                                  "Chassis: \n" +
+                                  " - E36 Coupe \n" +
+                                  " - Angle Kit - WiseFab Replica";
+
+            projectCars[0] = new ProjectCar()
+            {
+                Id = 1,
+                Description = valkataDescr,
+                MainImage = "/imgs/valkata.jpg",
+                Name = "E36 Coupe M50B28 Turbo",
+            };
+
+            return projectCars;
         }
     }
 }
