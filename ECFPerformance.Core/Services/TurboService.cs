@@ -46,6 +46,9 @@ namespace ECFPerformance.Core.Services
         public async Task DeleteTurboAsync(int turboId)
         {
             Turbo currentTurbo = await dbContext.Turbos.FirstAsync(t => t.Id == turboId);
+
+            dbContext.Turbos.Remove(currentTurbo);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task EditTurboAsync(int turboId, TurboFormModel model)

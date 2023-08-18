@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using ECFPerformance.Core.Services.Contracts;
+using ECFPerformance.Core.ViewModels.Turbo;
 
 namespace ECFPerformance.Web.Areas.Admin.Controllers
 {
@@ -48,6 +49,20 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
             await turboService.EditTurboAsync(id, formModel);
 
             return RedirectToAction("Details", "Turbo", new { area = "", id });
+        }
+
+        public async Task<IActionResult> DeleteView(int id)
+        {
+            TurboViewModel model = await turboService.GetTurboByIdAsync(id);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await turboService.DeleteTurboAsync(id);
+
+            return RedirectToAction("Turbos", "Turbo", new { area = "" });
         }
     }
 }

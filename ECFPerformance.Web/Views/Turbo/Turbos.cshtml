@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <img class="col-md-6" src=@turbo.MainImage />
             <br />
-            <a asp-controller="Turbo" asp-action="Details" asp-route-id="@turbo.Id">@turbo.Name</a>
+            <a asp-area="" asp-controller="Turbo" asp-action="Details" asp-route-id="@turbo.Id">@turbo.Name</a>
             <p>Scroll Type: @turbo.ScrollType.ScrollType</p>
             @if(turbo.Quantity > 0)
             {

@@ -18,7 +18,9 @@
 
 @if (User.IsInRole(AdminRoleName))
 {
-    <a class="btn btn-primary btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-warning btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-danger btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="DeleteView" asp-route-id="@Model.Id">Delete</a>
+
 }
 
 <br />
