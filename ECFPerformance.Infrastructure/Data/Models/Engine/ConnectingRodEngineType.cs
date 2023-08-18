@@ -9,12 +9,12 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
 {
     public class ConnectingRodEngineType
     {
-        [ForeignKey(nameof(CompatibleEngine))]
-        public int CompatibleEngineId { get; set; }
-        public EngineType CompatibleEngine { get; set; }
+        [ForeignKey(nameof(EngineType))]
+        public int EngineTypeId { get; set; }
+        public EngineType EngineType { get; set; }
 
-        [ForeignKey(nameof(CompatibleRod))]
-        public int CompatibleRodId { get; set; }
-        public ConnectingRod CompatibleRod { get; set; }
+        [ForeignKey(nameof(ConnectingRod))]
+        public int ConnectingRodId { get; set; }
+        public ConnectingRod ConnectingRod { get; set; }
     }
 }

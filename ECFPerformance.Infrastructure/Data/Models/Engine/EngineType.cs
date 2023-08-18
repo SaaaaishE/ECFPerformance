@@ -12,7 +12,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
     {
         public EngineType()
         {
-            ConnectingRods = new HashSet<ConnectingRodEngineType>();
+            ConnectingRods = new HashSet<ConnectingRod>();
         }
 
         [Key]
@@ -21,6 +21,6 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         [Required]
         public EngineEnum EngineCode { get; set; }
 
-        public ICollection<ConnectingRodEngineType> ConnectingRods { get; set; }
+        public ICollection<ConnectingRod> ConnectingRods { get; set; }
     }
 }

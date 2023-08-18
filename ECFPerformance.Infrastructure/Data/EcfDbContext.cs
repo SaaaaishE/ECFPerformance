@@ -23,15 +23,12 @@ namespace ECFPerformance.Infrastructure.Data
         public DbSet<TurboScrollType> ScrollTypes { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<EngineType> EngineTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>()
                 .HasData(Seeder.SeedAdmin());
-
-            builder.Entity<ConnectingRodEngineType>()
-                .HasKey(x => new { x.CompatibleEngineId, x.CompatibleRodId });
-
 
             builder.Entity<EngineType>()
                 .HasData(Seeder.SeedEngineTypes());

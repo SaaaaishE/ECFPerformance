@@ -295,67 +295,67 @@ namespace ECFPerformance.Infrastructure.Data.Seed
             //bmw rods
             connectingRodEngineTypes[0] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 1,
-                CompatibleRodId = 1,
+                EngineTypeId = 1,
+                ConnectingRodId = 1,
             };
             connectingRodEngineTypes[1] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 1,
-                CompatibleRodId = 2,
+                EngineTypeId = 1,
+                ConnectingRodId = 2,
             };
             connectingRodEngineTypes[2] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 2,
-                CompatibleRodId = 1,
+                EngineTypeId = 2,
+                ConnectingRodId = 1,
             };
             connectingRodEngineTypes[3] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 2,
-                CompatibleRodId = 2,
+                EngineTypeId = 2,
+                ConnectingRodId = 2,
             };
 
             //mazda rods
             connectingRodEngineTypes[4] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 5,
-                CompatibleRodId = 3,
+                EngineTypeId = 5,
+                ConnectingRodId = 3,
             };
             connectingRodEngineTypes[5] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 5,
-                CompatibleRodId = 4,
+                EngineTypeId = 5,
+                ConnectingRodId = 4,
             };
             connectingRodEngineTypes[6] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 6,
-                CompatibleRodId = 3,
+                EngineTypeId = 6,
+                ConnectingRodId = 3,
             };
             connectingRodEngineTypes[7] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 6,
-                CompatibleRodId = 4,
+                EngineTypeId = 6,
+                ConnectingRodId = 4,
             };
 
             //honda rods
             connectingRodEngineTypes[8] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 3,
-                CompatibleRodId = 5,
+                EngineTypeId = 3,
+                ConnectingRodId = 5,
             };
             connectingRodEngineTypes[9] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 3,
-                CompatibleRodId = 6,
+                EngineTypeId = 3,
+                ConnectingRodId = 6,
             };
             connectingRodEngineTypes[10] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 4,
-                CompatibleRodId = 5,
+                EngineTypeId = 4,
+                ConnectingRodId = 5,
             };
             connectingRodEngineTypes[11] = new ConnectingRodEngineType()
             {
-                CompatibleEngineId = 4,
-                CompatibleRodId = 6,
+                EngineTypeId = 4,
+                ConnectingRodId = 6,
             };
 
             return connectingRodEngineTypes;

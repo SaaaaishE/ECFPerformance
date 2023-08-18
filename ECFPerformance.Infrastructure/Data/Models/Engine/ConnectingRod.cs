@@ -15,7 +15,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
     {
         public ConnectingRod()
         {
-            CompatibleEngines = new HashSet<ConnectingRodEngineType>();
+            EngineTypes = new HashSet<EngineType>();
             ProjectCars = new HashSet<ProjectCar>();
         }
 
@@ -52,6 +52,6 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         [Required]
         public ConnectingRodBeamType BeamType { get; set; } = null!;
 
-        public ICollection<ConnectingRodEngineType> CompatibleEngines { get; set; }
+        public ICollection<EngineType> EngineTypes { get; set; }
     }
 }

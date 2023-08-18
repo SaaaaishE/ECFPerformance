@@ -35,9 +35,5 @@ namespace ECFPerformance.Web.Controllers
 
             return View(viewModel);
         }
-
-        
-
-        
     }
 }
