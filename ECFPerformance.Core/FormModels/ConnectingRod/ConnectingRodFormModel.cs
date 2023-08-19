@@ -32,6 +32,8 @@ namespace ECFPerformance.Core.FormModels.ConnectingRod
 
         public int BeamTypeId { get; set; }
 
+        public IEnumerable<int> EngineTypeIds { get; set; } = null!;
+
         public IEnumerable<EngineTypeViewModel> EngineTypes { get; set; } = null!;
         public IEnumerable<BeamTypeViewModel> BeamTypes { get; set; } = null!;
     }

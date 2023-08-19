@@ -11,5 +11,6 @@ namespace ECFPerformance.Core.ViewModels.EngineType
     {
         public int Id { get; set; }
         public EngineEnum EngineType { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

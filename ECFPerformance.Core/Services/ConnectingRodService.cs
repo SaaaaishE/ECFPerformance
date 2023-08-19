@@ -27,10 +27,10 @@ namespace ECFPerformance.Core.Services
         {
             HashSet<EngineType> engineTypes = new HashSet<EngineType>();
 
-            foreach(EngineTypeViewModel viewModel in model.EngineTypes)
+            foreach(int engineId in model.EngineTypeIds)
             {
                 EngineType currentEngineType = await dbContext.EngineTypes
-                    .FirstAsync(et => et.EngineCode == viewModel.EngineType);
+                    .FirstAsync(et => et.Id == engineId);
 
                 engineTypes.Add(currentEngineType);
             }
@@ -109,6 +109,7 @@ namespace ECFPerformance.Core.Services
                 {
                     Id = e.Id,
                     EngineType = e.EngineCode,
+                    IsChecked = false,
                 })
                 .ToArrayAsync();
         }
