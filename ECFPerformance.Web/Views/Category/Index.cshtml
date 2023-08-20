@@ -18,6 +18,10 @@
                         <a asp-area="" asp-controller="Turbo" asp-action="Details"
                            asp-route-id="@item.Id" class="col-md-6">@item.Name</a>
                         break;
+                    case SubCategoryEnum.ConnectingRod:
+                        <a asp-area="" asp-controller="ConnectingRod" asp-action="Details"
+                        asp-route-id="@item.Id" class="col-md-6">@item.Name</a>
+                        break;
                     default:
                         <p class="col-md-6">@item.Name</p>
                         break;
@@ -32,10 +36,10 @@
                     if(item.Quantity > 0)
                     {
                         <p class="col-md-6">Available</p>
-                        if(item.SubCategory == SubCategoryEnum.Turbo)
+                        if(item.SubCategory == SubCategoryEnum.Turbo || item.SubCategory == SubCategoryEnum.ConnectingRod)
                         {
-                            string btnId = "btn" + item.Id;
-                            <button id=@btnId onclick="addToCart(@item.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                            string btnId = "btn" + item.SubCategory.ToString() + item.Id;
+                            <button id=@btnId onclick="addToCart(@item.Id, '@item.SubCategory.ToString()')" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
                         }
                     }
                     else
@@ -50,4 +54,4 @@
     }
 </div>
 
-<script src="~/js/turbo.js"></script>
+<script src="~/js/product.js"></script>

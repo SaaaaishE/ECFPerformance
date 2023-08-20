@@ -2,6 +2,7 @@
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Infrastructure.Data;
 using ECFPerformance.Infrastructure.Data.Models;
+using ECFPerformance.Infrastructure.Data.Models.Engine;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -43,18 +44,30 @@ namespace ECFPerformance.Core.Services
             StringBuilder orderDescr = new StringBuilder();
             ShoppingCart currentCart = await dbContext.ShoppingCarts
                 .Include(t => t.Turbos)
+                .Include(r => r.ConnectingRods)
                 .FirstAsync(c => c.UserId == userId);
 
             decimal totalPrice = 0;
 
             if(currentCart.Turbos != null && currentCart.Turbos.Count > 0)
             {
-                orderDescr.Append("Turbos:");
+                orderDescr.Append("Turbos: ");
                 foreach(var turbo in currentCart.Turbos)
                 {
                     orderDescr.AppendLine($" {turbo.Name}");
                     orderDescr.AppendLine($" - $ {turbo.Price}\n");
                     totalPrice += turbo.Price;
+                }
+            }
+
+            if(currentCart.ConnectingRods != null && currentCart.ConnectingRods.Count > 0)
+            {
+                orderDescr.AppendLine("Connecting Rods: ");
+                foreach(var rod in currentCart.ConnectingRods)
+                {
+                    orderDescr.AppendLine($" {rod.Name}");
+                    orderDescr.AppendLine($" - $ {rod.Price}\n");
+                    totalPrice += rod.Price;
                 }
             }
 
@@ -66,6 +79,7 @@ namespace ECFPerformance.Core.Services
             };
 
             currentCart.Turbos.Clear();
+            currentCart.ConnectingRods.Clear();
 
             await dbContext.Orders.AddAsync(order);
             await dbContext.SaveChangesAsync();

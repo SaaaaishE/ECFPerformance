@@ -1,11 +1,6 @@
-﻿using ECFPerformance.Infrastructure.Contracts;
-using ECFPerformance.Infrastructure.Data.Models.Engine;
-using System;
-using System.Collections.Generic;
+﻿using ECFPerformance.Infrastructure.Data.Models.Engine;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static ECFPerformance.Constants.ProjectCarConstants;
 
 namespace ECFPerformance.Infrastructure.Data.Models.Projects
 {
@@ -21,9 +16,11 @@ namespace ECFPerformance.Infrastructure.Data.Models.Projects
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
+        [MaxLength(DescrMaxLength)]
         public string Description { get; set; } = null!;
 
         [Required]

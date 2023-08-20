@@ -1,13 +1,8 @@
 ﻿using ECFPerformance.Infrastructure.Contracts;
-using ECFPerformance.Infrastructure.Data.Enums;
 using ECFPerformance.Infrastructure.Data.Models.Projects;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static ECFPerformance.Constants.ProductConstants;
 
 namespace ECFPerformance.Infrastructure.Data.Models.Engine
 {
@@ -21,8 +16,10 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
 
         public int Id { get; set; }
         [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
         [Required]
+        [MaxLength(MakeMaxLength)]
         public string Make { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,4)")]

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ECFPerformance.Core.ViewModels.Turbo;
 
-namespace ECFPerformance.Core.ViewModels
+namespace ECFPerformance.Core.ViewModels.ShoppingCart
 {
     public class ShoppingCartViewModel
     {
-        public IEnumerable<TurboInCartViewModel> TurbosInCart { get; set; }
+        public IEnumerable<ProductInCartViewModel> ProductsInCart { get; set; }
     }
 }

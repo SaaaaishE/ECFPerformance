@@ -14,6 +14,7 @@ namespace ECFPerformance.Infrastructure.Data.Models
         {
             Id = Guid.NewGuid();
             Turbos = new HashSet<Turbo>();
+            ConnectingRods = new HashSet<ConnectingRod>();
         }
         public Guid Id { get; set; }
 
@@ -22,5 +23,7 @@ namespace ECFPerformance.Infrastructure.Data.Models
         public ApplicationUser User { get; set; } = null!;
 
         public ICollection<Turbo> Turbos { get; set; }
+
+        public ICollection<ConnectingRod> ConnectingRods { get; set; }
     }
 }

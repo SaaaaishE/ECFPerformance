@@ -1,11 +1,6 @@
-﻿using ECFPerformance.Infrastructure.Contracts;
-using ECFPerformance.Infrastructure.Data.Models.Engine;
-using System;
-using System.Collections.Generic;
+﻿using ECFPerformance.Infrastructure.Data.Models.Engine;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static ECFPerformance.Constants.Category;
 
 namespace ECFPerformance.Infrastructure.Data.Models
 {
@@ -21,6 +16,7 @@ namespace ECFPerformance.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(CategoryNameMaxLength)]
         public string CategoryName { get; set; } = null!;
 
         public ICollection<Turbo> Turbos { get; set; }

@@ -29,6 +29,9 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ConnectingRodFormModel formModel)
         {
+            if (!ModelState.IsValid)
+                return View(formModel);
+
             int id = await connectingRodService.AddRodAsync(formModel);
 
             return RedirectToAction("Details", "ConnectingRod", new { area = "", id });
@@ -45,6 +48,9 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, ConnectingRodFormModel formModel)
         {
+            if (!ModelState.IsValid)
+                return View(formModel);
+
             await connectingRodService.EditRodAsync(id, formModel);
 
             return RedirectToAction("Details", "ConnectingRod", new { area = "", id });

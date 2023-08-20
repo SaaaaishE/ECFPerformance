@@ -14,6 +14,9 @@ namespace ECFPerformance.Core.ViewModels.ConnectingRod
         public string MainImage { get; set; } = null!;
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+
+        public SubCategoryEnum SubCategory { get; set; }
+
         public ConnectingRodBeamEnum BeamType { get; set; }
     }
 }

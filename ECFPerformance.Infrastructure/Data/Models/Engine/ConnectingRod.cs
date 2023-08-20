@@ -1,13 +1,8 @@
 ﻿using ECFPerformance.Infrastructure.Contracts;
-using ECFPerformance.Infrastructure.Data.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ECFPerformance.Infrastructure.Data.Models.Projects;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static ECFPerformance.Constants.ProductConstants;
 
 namespace ECFPerformance.Infrastructure.Data.Models.Engine
 {
@@ -17,6 +12,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         {
             EngineTypes = new HashSet<EngineType>();
             ProjectCars = new HashSet<ProjectCar>();
+            ShoppingCarts = new HashSet<ShoppingCart>();
         }
 
 
@@ -24,9 +20,11 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
+        [MaxLength(MakeMaxLength)]
         public string Make { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,4)")]
@@ -53,5 +51,7 @@ namespace ECFPerformance.Infrastructure.Data.Models.Engine
         public ConnectingRodBeamType BeamType { get; set; } = null!;
 
         public ICollection<EngineType> EngineTypes { get; set; }
+
+        public ICollection<ShoppingCart> ShoppingCarts { get; set;}
     }
 }

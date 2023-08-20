@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    partial class EcfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230819085715_BeamType")]
+    partial class BeamType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,21 +52,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasIndex("ProjectCarsId");
 
                     b.ToTable("ConnectingRodProjectCar");
-                });
-
-            modelBuilder.Entity("ConnectingRodShoppingCart", b =>
-                {
-                    b.Property<int>("ConnectingRodsId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ShoppingCartsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ConnectingRodsId", "ShoppingCartsId");
-
-                    b.HasIndex("ShoppingCartsId");
-
-                    b.ToTable("ConnectingRodShoppingCart");
                 });
 
             modelBuilder.Entity("ECFPerformance.Infrastructure.Data.Models.ApplicationUser", b =>
@@ -147,9 +134,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9726ad07-eacf-49e2-8ebe-a6f2e4756092"),
+                            Id = new Guid("4cc064f5-c1e6-4bf4-a49a-705fd2c61d43"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0cd5866-3bd5-4cd1-b422-f779fb0dc464",
+                            ConcurrencyStamp = "23535292-9d60-478f-95b8-57375b655b6f",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -157,10 +144,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF7qL2cI26AKMQYx5Wn4zeqaotY0mGKpNAQDhrS0mI9aJ2TKSz9ZnNdjQvFK+qikIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGiFN6GHC8fc6Hq42zHJNv1cYoCpBWtoX8dIES+pX/VO6QgMFOnbIzIAYmVaOQ14yg==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e866ab02-353e-4e01-8d56-62e8e648ab29",
+                            SecurityStamp = "d0d34884-d478-4a82-b456-833ebbe46e7e",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -176,8 +163,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -229,13 +215,11 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Make")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PistonBoltDiameter")
                         .HasColumnType("int");
@@ -428,13 +412,11 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Make")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,4)");
@@ -539,8 +521,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2500)
-                        .HasColumnType("nvarchar(2500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,4)");
@@ -565,8 +546,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2500)
-                        .HasColumnType("nvarchar(2500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainImage")
                         .IsRequired()
@@ -574,8 +554,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -798,21 +777,6 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasOne("ECFPerformance.Infrastructure.Data.Models.Projects.ProjectCar", null)
                         .WithMany()
                         .HasForeignKey("ProjectCarsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ConnectingRodShoppingCart", b =>
-                {
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.Engine.ConnectingRod", null)
-                        .WithMany()
-                        .HasForeignKey("ConnectingRodsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECFPerformance.Infrastructure.Data.Models.ShoppingCart", null)
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

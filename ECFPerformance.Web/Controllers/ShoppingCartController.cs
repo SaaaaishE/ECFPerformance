@@ -1,5 +1,6 @@
 ﻿using ECFPerformance.Core.Services.Contracts;
-using ECFPerformance.Core.ViewModels;
+using ECFPerformance.Core.ViewModels.ShoppingCart;
+using ECFPerformance.Infrastructure.Data.Enums;
 using ECFPerformance.Web.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,23 +29,29 @@ namespace ECFPerformance.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddTurboToCart(int id)
+        [Route("ShoppingCart/AddProduct/{id}/{subCategory}")]
+        public async Task<JsonResult> AddProductToCart(int id, string subCategory)
         {
             Guid userId = Guid.Parse(User.GetId());
 
+            SubCategoryEnum subCategoryEnum = (SubCategoryEnum)Enum.Parse(typeof(SubCategoryEnum), subCategory);
+
             await cartService.CreateCartAsync(userId);
 
-            await cartService.AddTurboToCartAsync(userId, id);
+            await cartService.AddProductToCartAsync(userId, id, subCategoryEnum);
 
             return new JsonResult(201);
         }
 
         [HttpGet]
-        public async Task<IActionResult> RemoveTurboFromCart(int id)
+        [Route("ShoppingCart/RemoveProduct/{id}/{subCategory}")]
+        public async Task<IActionResult> RemoveProductFromCart(int id, string subCategory)
         {
             Guid userId = Guid.Parse(User.GetId());
 
-            await cartService.RemoveTurboFromCartAsync(userId, id);
+            SubCategoryEnum subCategoryEnum = (SubCategoryEnum)Enum.Parse(typeof(SubCategoryEnum), subCategory);
+
+            await cartService.RemoveProductFromCartAsync(userId, id, subCategoryEnum);
 
             return RedirectToAction("Index");
         }

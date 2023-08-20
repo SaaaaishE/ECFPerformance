@@ -15,6 +15,5 @@ namespace ECFPerformance.Core.ViewModels
         public string UserPhone { get; set; }
         public string Description { get; set; }
         public decimal TotalPrice { get; set; }
-
     }
 }

@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECFPerformance.Infrastructure.Data.Enums;
 
 namespace ECFPerformance.Core.ViewModels.Turbo
 {
@@ -19,6 +20,9 @@ namespace ECFPerformance.Core.ViewModels.Turbo
         public int Quantity { get; set; }
 
         public string MainImage { get; set; } = null!;
+
+        public SubCategoryEnum SubCategory { get; set; }
+
         public TurboScrollType ScrollType { get; set; } = null!;
     }
 }

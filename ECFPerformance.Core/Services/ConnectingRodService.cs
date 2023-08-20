@@ -124,7 +124,8 @@ namespace ECFPerformance.Core.Services
                     Name = c.Name,
                     Price = c.Price,
                     Quantity = c.Quantity,
-                    BeamType = c.BeamType.ConnectingRodBeam
+                    BeamType = c.BeamType.ConnectingRodBeam,
+                    SubCategory = SubCategoryEnum.ConnectingRod
                 })
                 .ToArrayAsync();
         }
@@ -143,6 +144,7 @@ namespace ECFPerformance.Core.Services
                 Price = rod.Price,
                 PistonBoltDiameter = rod.PistonBoltDiameter,
                 Quantity = rod.Quantity,
+                SubCategory = SubCategoryEnum.ConnectingRod
             };
         }
 

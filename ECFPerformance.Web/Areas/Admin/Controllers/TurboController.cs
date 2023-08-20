@@ -30,6 +30,9 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(TurboFormModel formModel)
         {
+            if (!ModelState.IsValid)
+                return View(formModel);
+
             int id = await turboService.AddTurboAsync(formModel);
 
             return RedirectToAction("Details", "Turbo", new { area = "", id });
@@ -46,6 +49,9 @@ namespace ECFPerformance.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, TurboFormModel formModel)
         {
+            if (!ModelState.IsValid)
+                return View(formModel);
+
             await turboService.EditTurboAsync(id, formModel);
 
             return RedirectToAction("Details", "Turbo", new { area = "", id });

@@ -4,6 +4,7 @@ using ECFPerformance.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECFPerformance.Infrastructure.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    partial class EcfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230819100919_addRodToCart")]
+    partial class addRodToCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,9 +149,9 @@ namespace ECFPerformance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9726ad07-eacf-49e2-8ebe-a6f2e4756092"),
+                            Id = new Guid("7e0f06d1-1012-4e8f-a734-a54d1864f9ae"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0cd5866-3bd5-4cd1-b422-f779fb0dc464",
+                            ConcurrencyStamp = "0a7bdef6-0c29-40ae-808d-e3e9ed915d61",
                             Email = "ecfperformance@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Alex",
@@ -157,10 +159,10 @@ namespace ECFPerformance.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ecfperformance@gmail.com",
                             NormalizedUserName = "ecfperformance@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF7qL2cI26AKMQYx5Wn4zeqaotY0mGKpNAQDhrS0mI9aJ2TKSz9ZnNdjQvFK+qikIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGb7k6ZKMoOXDveOpsNeT8ZPP+DLTFEZ/C37/Er1Dm6QON8Yp1GqXM1F2wflcYafnA==",
                             PhoneNumber = "+3594567891",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e866ab02-353e-4e01-8d56-62e8e648ab29",
+                            SecurityStamp = "d79ad9ef-73a4-433e-86a4-eb4fca3018d3",
                             TwoFactorEnabled = false,
                             UserName = "ecfperformance@gmail.com"
                         });
@@ -176,8 +178,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -229,13 +230,11 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Make")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PistonBoltDiameter")
                         .HasColumnType("int");
@@ -428,13 +427,11 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Make")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,4)");
@@ -539,8 +536,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2500)
-                        .HasColumnType("nvarchar(2500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,4)");
@@ -565,8 +561,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(2500)
-                        .HasColumnType("nvarchar(2500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainImage")
                         .IsRequired()
@@ -574,8 +569,7 @@ namespace ECFPerformance.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

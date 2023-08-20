@@ -1,4 +1,4 @@
-﻿@model TurboViewModel
+﻿@model ConnectingRodViewModel
 
 <div class="row">
     <div class="col-lg-6">
@@ -8,7 +8,9 @@
         <h4>Description</h4>
         <p>@Model.Name</p>
         <p>@Model.Make</p>
-        <p>@Model.ScrollType.ScrollType</p>
+        <p>Beam Type: @Model.BeamType</p>
+        <p>Length: @Model.Length</p>
+        <p>Piston Bolt Diameter: @Model.PistonBoltDiameter</p>
         <p>@Model.Quantity left</p>
         <p>$ @Model.Price</p>
     </div>
@@ -18,8 +20,8 @@
 
 @if (User.IsInRole(AdminRoleName))
 {
-    <a class="btn btn-warning btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a class="btn btn-danger btn-md" asp-area="@AdminAreaName" asp-controller="Turbo" asp-action="DeleteView" asp-route-id="@Model.Id">Delete</a>
+    <a class="btn btn-warning btn-md" asp-area="@AdminAreaName" asp-controller="ConnectingRod" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-danger btn-md" asp-area="@AdminAreaName" asp-controller="ConnectingRod" asp-action="DeleteView" asp-route-id="@Model.Id">Delete</a>
 
 }
 

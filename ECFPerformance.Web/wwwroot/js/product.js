@@ -1,8 +1,5 @@
-﻿//add turbo to cart
-
-async function addToCart(turboId) {
-    let btn = document.getElementById("btn" + turboId);
-
+﻿async function addToCart(productId, subCategory) {
+    let btn = document.getElementById("btn" + subCategory + productId);
     btn.className = "btn btn-success btn-md";
 
     setTimeout(function () {
@@ -10,7 +7,7 @@ async function addToCart(turboId) {
     }, 300)
 
     try {
-        await post(`/ShoppingCart/AddTurboToCart/${turboId}`);
+          await post(`/ShoppingCart/AddProduct/${productId}/${subCategory}`);
     }
     catch {
         let currentUrl = window.location.href;

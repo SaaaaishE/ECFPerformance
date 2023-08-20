@@ -3,6 +3,7 @@ using ECFPerformance.Core.Services.Contracts;
 using ECFPerformance.Core.ViewModels;
 using ECFPerformance.Core.ViewModels.Turbo;
 using ECFPerformance.Infrastructure.Data;
+using ECFPerformance.Infrastructure.Data.Enums;
 using ECFPerformance.Infrastructure.Data.Models.Engine;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -87,6 +88,7 @@ namespace ECFPerformance.Core.Services
                     Price = t.Price,
                     Quantity = t.Quantity,
                     ScrollType = t.ScrollType,
+                    SubCategory = SubCategoryEnum.Turbo
                 })
                 .ToArrayAsync();
         }
@@ -105,7 +107,8 @@ namespace ECFPerformance.Core.Services
                 Price = turbo.Price,
                 Quantity = turbo.Quantity,
                 ScrollType = turbo.ScrollType,
-                MainImage = turbo.MainImage
+                MainImage = turbo.MainImage,
+                SubCategory = SubCategoryEnum.Turbo
             };
 
             return turboViewModel;

@@ -2,21 +2,21 @@
 
 <h1>My Cart</h1>
 
-@if (Model.TurbosInCart != null && Model.TurbosInCart.Count() > 0)
+@if (Model.ProductsInCart != null && Model.ProductsInCart.Count() > 0)
 {
-    <h3>Turbos: </h3>
+    <h3>Products: </h3>
     <table>
         <tbody>
-            @foreach (TurboInCartViewModel turbo in Model.TurbosInCart)
+            @foreach (ProductInCartViewModel product in Model.ProductsInCart)
             {
                 <tr>
                     <td>
-                        <p style="visibility: hidden" id="turboId">@turbo.Id</p>
+                        <p style="visibility: hidden" id="productId">@product.Id</p>
                     </td>
-                    <td>@turbo.Name</td>
-                    <td>$ @turbo.Price</td>
+                    <td>@product.Name</td>
+                    <td>$ @product.Price</td>
                     <td>
-                        <a asp-area="" asp-controller="ShoppingCart" asp-action="RemoveTurboFromCart" asp-route-id="@turbo.Id" class="btn btn-danger">Remove From Cart</a>
+                        <a asp-area="" asp-controller="ShoppingCart" asp-action="RemoveProductFromCart" asp-route-id="@product.Id" asp-route-subCategory="@product.SubCategory.ToString()" class="btn btn-danger">Remove From Cart</a>
                     </td>
                 </tr>
             }

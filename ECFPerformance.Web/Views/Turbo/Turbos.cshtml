@@ -19,11 +19,11 @@
             <p>Scroll Type: @turbo.ScrollType.ScrollType</p>
             @if(turbo.Quantity > 0)
             {
-                string btnId = "btn" + turbo.Id;
                 <p>Available</p>
                 @if (!User.IsInRole(AdminRoleName))
                 {
-                    <button id=@btnId onclick="addToCart(@turbo.Id)" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                    string btnId = "btn" + turbo.SubCategory.ToString() + turbo.Id;
+                    <button id=@btnId onclick="addToCart(@turbo.Id, '@turbo.SubCategory.ToString()')" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
                 }
             } else
             {
@@ -33,4 +33,4 @@
     }
 </div>
 
-<script src="~/js/turbo.js"></script>
+<script src="~/js/product.js"></script>

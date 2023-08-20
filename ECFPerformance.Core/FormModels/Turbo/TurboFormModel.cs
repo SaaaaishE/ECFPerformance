@@ -1,20 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ECFPerformance.Core.ViewModels;
+using static ECFPerformance.Constants.ProductConstants;
 
 namespace ECFPerformance.Core.FormModels.Turbo
 {
     public class TurboFormModel
     {
+        public TurboFormModel()
+        {
+            ScrollTypes = new HashSet<ScrollTypeViewModel>();
+        }
+
         [Required]
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string Name { get; set; } = null!;
         [Required]
+        [StringLength(MakeMaxLength, MinimumLength = MakeMinLength)]
         public string Make { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,4)")]

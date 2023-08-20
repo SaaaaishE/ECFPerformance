@@ -1,3 +1,36 @@
-﻿<partial name="_SubCategoriesPartial" />
+﻿@model IEnumerable<AllConnectingRodsViewModel>
+<partial name="_SubCategoriesPartial" />
 
 <h1>CONNECTING RODS</h1>
+
+<br />
+
+<br />
+<br />
+
+<div class="row">
+    @foreach (var rod in Model)
+    {
+        <div class="col-md-3">
+            <img class="col-md-6" src=@rod.MainImage />
+            <br />
+            <a asp-area="" asp-controller="ConnectingRod" asp-action="Details" asp-route-id="@rod.Id">@rod.Name</a>
+            <p>Beam Type: @rod.BeamType</p>
+            @if (rod.Quantity > 0)
+            {
+                <p>Available</p>
+                @if (!User.IsInRole(AdminRoleName))
+                {
+                    string btnId = "btn" + rod.SubCategory.ToString() + rod.Id;
+                    <button id=@btnId onclick="addToCart(@rod.Id, '@rod.SubCategory.ToString()')" type="submit" class="btn btn-primary btn-sm">ADD TO CART</button>
+                }
+            }
+            else
+            {
+                <p>Out of stock</p>
+            }
+        </div>
+    }
+</div>
+
+<script src="~/js/product.js"></script>
